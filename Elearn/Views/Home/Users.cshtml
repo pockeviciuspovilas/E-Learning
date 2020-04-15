@@ -1,0 +1,11 @@
+﻿@model  List<Elearn.Models.AspNetUsers>
+@{
+    ViewData["Title"] = "Users";
+}
+<h1>@ViewData["Title"]</h1>
+<p>Use this page to set roles for users.</p>
+@foreach (var item in Model)
+{
+    <div>@item.Email</div>
+}
+
