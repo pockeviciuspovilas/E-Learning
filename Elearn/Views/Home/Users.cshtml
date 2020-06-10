@@ -1,11 +1,27 @@
-﻿@model  List<Elearn.Models.AspNetUsers>
-@{
+﻿@{
     ViewData["Title"] = "Users";
 }
-<h1>@ViewData["Title"]</h1>
-<p>Use this page to set roles for users.</p>
-@foreach (var item in Model)
-{
-    <div>@item.Email</div>
-}
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="~/js/users.js"></script>
 
+<h1>@ViewData["Title"]</h1>
+<p>Use this page to create, edit or delete users.</p>
+
+<button class="btn btn-primary" onclick="location.href = '/Identity/Account/Register'">Create User</button>
+<div class="container">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Email</th>
+                <th scope="col">System Role</th>
+                <th scope="col">Unit</th>
+                <th scope="col">Unit Role</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody id="usersTbody">
+        </tbody>
+    </table>
+</div>
