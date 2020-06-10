@@ -1,0 +1,33 @@
+@model List<Tuple<Elearn.Models.Result,Elearn.Models.Test>>
+
+@{
+    ViewData["Title"] = "Mano testai";
+}
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Data</th>
+      <th scope="col">Testo pavadinimas</th>
+      <th scope="col">Balas</th>
+    </tr>
+  </thead>
+  <tbody>
+@for(int i=0;i< 1; i++)
+{
+    double Mark = Model[i].Item1.Mark;
+    string MarkPercent = Mark + "%";
+    @:
+    <tr>
+    <th scope="row">@Model[i].Item1.CompleteTime</th>
+    <td>@Model[i].Item2.Name</td>
+    <td>
+        <div class="progress" style="height: 30px;"> 
+            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="@Mark" aria-valuemin="0" aria-valuemax="100" style="width: @MarkPercent">@MarkPercent</div>
+        </div></td>
+ 
+    </tr>
+
+} 
+  </tbody>
+</table>
