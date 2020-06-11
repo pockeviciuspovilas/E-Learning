@@ -6,6 +6,7 @@ using System;
 using System.Linq;
 using Newtonsoft.Json;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Elearn.Controllers
 {
@@ -14,7 +15,7 @@ namespace Elearn.Controllers
         aspnetElearnContext context = new aspnetElearnContext();
         public IActionResult GetUsers()
         {
-            List<AspNetUsers> users = context.AspNetUsers.Include(x => x.AspNetUserRoles).ThenInclude(a => a.Role).ToList();
+            List<AspNetUsers> users = context.AspNetUsers.Include(x => x.AspNetUserRoles).ThenInclude(a => a.Role).Include(x => x.Unit).Include(x=>x.Category).ToList();
             foreach (var user in users.ToList())
             {
                 if (user.AspNetUserRoles.Count > 0)
@@ -46,6 +47,12 @@ namespace Elearn.Controllers
                 return Json("BAD");
             }
 
+        }
+
+        [Authorize(Roles = "SuperAdmin")]
+        public IActionResult Index()
+        {
+            return View();
         }
 
         public IActionResult Create()

@@ -22,7 +22,7 @@ namespace Elearn.Areas.Identity.Pages.Account
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly ILogger<LoginModel> _logger;
 
-        public LoginModel(SignInManager<IdentityUser> signInManager, 
+        public LoginModel(SignInManager<IdentityUser> signInManager,
             ILogger<LoginModel> logger,
             UserManager<IdentityUser> userManager)
         {
@@ -43,11 +43,10 @@ namespace Elearn.Areas.Identity.Pages.Account
 
         public class InputModel
         {
-            [Required]
+
             [EmailAddress]
             public string Email { get; set; }
 
-            [Required]
             [DataType(DataType.Password)]
             public string Password { get; set; }
 
@@ -69,8 +68,6 @@ namespace Elearn.Areas.Identity.Pages.Account
             // Clear the existing external cookie to ensure a clean login process
             await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
 
-            ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
-
             ReturnUrl = returnUrl;
         }
 
@@ -79,21 +76,18 @@ namespace Elearn.Areas.Identity.Pages.Account
         {
             returnUrl = returnUrl ?? Url.Content("~/");
             var postUser = context.AspNetUsers.Where(x => x.Rfid == Input.HEX).Count();
-            if (postUser == 1)
+            if (postUser == 1 && Input.HEX != null)
             {
                 var user = new IdentityUser(context.AspNetUsers.Where(x => x.Rfid == Input.HEX).First().Email);
                 await _signInManager.SignInAsync(user, isPersistent: false);
                 return RedirectToAction("Index", "Home");
             }
-           
-
-
-            if (ModelState.IsValid)
+            else if (ModelState.IsValid && Input.Email != null && Input.Password != null)
             {
                 // This doesn't count login failures towards account lockout
                 // To enable password failures to trigger account lockout, set lockoutOnFailure: true
                 var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: false);
-           
+
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");

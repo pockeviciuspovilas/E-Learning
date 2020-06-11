@@ -26,12 +26,7 @@ namespace Elearn.Controllers
 
             return View();
         }
-        [Authorize(Roles = "SuperAdmin")]
-        public IActionResult Users()
-        {
-            List<AspNetUsers> users = context.AspNetUsers.ToList();
-            return View(users);
-        }
+     
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

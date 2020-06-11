@@ -64,7 +64,6 @@ namespace Elearn.Areas.Identity.Pages.Account
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
 
-            [DataType(DataType.Text)]
             [Display(Name = "Identification card")]
             public string HEX { get; set; }
 
@@ -82,8 +81,8 @@ namespace Elearn.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
 
             int count = context.AspNetUsers.Where(x => x.Rfid == Input.HEX).ToList().Count();
-
-            if (ModelState.IsValid && count == 0)
+        
+            if (ModelState.IsValid && (Input.HEX == null || count == 0))
             {
                 var user = new IdentityUser { UserName = Input.Email, Email = Input.Email };
                 var result = await _userManager.CreateAsync(user, Input.Password);
