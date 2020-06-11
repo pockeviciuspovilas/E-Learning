@@ -15,7 +15,7 @@ namespace Elearn.Controllers
         aspnetElearnContext context = new aspnetElearnContext();
         public IActionResult GetUsers()
         {
-            List<AspNetUsers> users = context.AspNetUsers.Include(x => x.AspNetUserRoles).ThenInclude(a => a.Role).Include(x => x.Unit).Include(x=>x.Category).ToList();
+            List<AspNetUsers> users = context.AspNetUsers.Include(x => x.AspNetUserRoles).ThenInclude(a => a.Role).Include(x => x.Unit).Include(x => x.Category).ToList();
             foreach (var user in users.ToList())
             {
                 if (user.AspNetUserRoles.Count > 0)
@@ -32,6 +32,34 @@ namespace Elearn.Controllers
 
             return Json(users);
         }
+
+        public IActionResult GetAvailableUsers()
+        {
+            List<AspNetUsers> users = context.AspNetUsers.Include(x => x.AspNetUserRoles).ThenInclude(a => a.Role).Include(x => x.Unit).Include(x => x.Category).ToList();
+            foreach (var user in users.ToList())
+            {
+                if (user.AspNetUserRoles.Count > 0)
+                {
+                    foreach (var role in user.AspNetUserRoles)
+                    {
+                        if (role.Role.Name == "SuperAdmin")
+                        {
+                            users.Remove(user);
+                        }
+                    }
+                }
+                if (user.Unit.Count > 0)
+                {
+
+                    users.Remove(user);
+
+                }
+            }
+
+            return Json(users);
+        }
+
+
 
         public IActionResult RemoveUser(string postUser)
         {

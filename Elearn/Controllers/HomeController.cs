@@ -14,11 +14,18 @@ namespace Elearn.Controllers
     public class HomeController : Controller
     {
         aspnetElearnContext context = new aspnetElearnContext();
+       
         private readonly ILogger<HomeController> _logger;
 
         public HomeController(ILogger<HomeController> logger)
         {
+            SetUnitStyle();
             _logger = logger;
+        }
+
+        public void SetUnitStyle()
+        {
+
         }
 
         public IActionResult Index()

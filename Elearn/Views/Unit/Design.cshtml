@@ -1,0 +1,86 @@
+﻿@{
+    ViewData["Title"] = "Unit Designer";
+}
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="~/js/designer.js"></script>
+
+<h1>@ViewData["Title"]</h1>
+<label for="containerColor">Select your background color:</label>
+<input type="color" id="containerColor" name="containerColor" onchange="setBackgroundColor(this.value)">
+
+<div id="container">
+    <div class="container">
+        <label for="navColor">Select your navigation bar color:</label>
+        <input type="color" id="navColor" name="navColor" onchange="setNavbarColor(this.value)">
+
+        <label for="image">Select navbar image:</label>
+        <input type="file" accept="image/x-png,image/jpeg" id="image" name="image" onchange="readURL(this)">
+
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div id="navbarColor" class="container">
+                <a>  <img id="blah" src="#" alt="your image" /> </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark">Example 1</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark">Example 2</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark">Example 3</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <div class="container" id="container">
+        <label for="tableHeaderColor">Select your table header color:</label>
+        <input type="color" id="tableHeaderColor" name="tableHeaderColor" onchange="setHeaderColor(this.value)" >
+
+        <label for="tableDataColor">Select your table data color:</label>
+        <input type="color" id="tableDataColor" name="tableDatarColor" onchange="setDataColor(this.value)">
+
+        <table class="table table-responsive-lg">
+            <thead id="thead">
+                <tr>
+                    <th scope="col">Header 1</th>
+                    <th scope="col">Header 2</th>
+                    <th scope="col">Header 3</th>
+                    <th scope="col">Header 4</th>
+                </tr>
+            </thead>
+            <tbody id="tbody">
+                <tr>
+                    <td>data 1</td>
+                    <td>data 2</td>
+                    <td>data 3</td>
+                    <td>data 4</td>
+                </tr>
+                <tr>
+                    <td>data 1</td>
+                    <td>data 2</td>
+                    <td>data 3</td>
+                    <td>data 4</td>
+                </tr>
+                <tr>
+                    <td>data 1</td>
+                    <td>data 2</td>
+                    <td>data 3</td>
+                    <td>data 4</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<button onclick="saveDesign()" class="btn btn-primary">Save</button>
+
+
