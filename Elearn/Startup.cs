@@ -14,6 +14,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Elearn.Models;
 using Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation;
+using Microsoft.AspNetCore.Http;
 
 namespace Elearn
 {
@@ -41,6 +42,7 @@ namespace Elearn
             services.AddMvc().AddRazorRuntimeCompilation();
             services.AddControllersWithViews();
             services.AddRazorPages();
+            services.AddHttpContextAccessor();
 
             CreateRoles();
         }

@@ -470,3 +470,4 @@ C:\Users\Lenovo\source\repos\Elearn\Elearn\obj\Debug\netcoreapp3.1\Razor\Views\U
 C:\Users\Lenovo\source\repos\Elearn\Elearn\obj\Debug\netcoreapp3.1\Razor\Views\Unit\Index.cshtml.g.cs
 C:\Users\Lenovo\source\repos\Elearn\Elearn\obj\Debug\netcoreapp3.1\Razor\Views\Unit\Form.cshtml.g.cs
 C:\Users\Lenovo\source\repos\Elearn\Elearn\obj\Debug\netcoreapp3.1\Razor\Views\Unit\Design.cshtml.g.cs
+C:\Users\Lenovo\source\repos\Elearn\Elearn\obj\Debug\netcoreapp3.1\Razor\Views\User\Form.cshtml.g.cs

@@ -77,6 +77,11 @@ namespace Elearn.Controllers
             return Json("OK");
         }
 
+        public IActionResult GetUnitCategories(int unitId)
+        {
+            
+            return Json("");
+        }
         public IActionResult GetUnit(int unitId)
         {
             return Json(context.Unit.Where(x => x.Id == unitId).Include(x => x.User).First());

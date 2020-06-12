@@ -8,19 +8,24 @@ using Microsoft.Extensions.Logging;
 using Elearn.Models;
 using Microsoft.AspNetCore.Authorization;
 using System.Security.Principal;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Http;
 
 namespace Elearn.Controllers
 {
     public class HomeController : Controller
     {
         aspnetElearnContext context = new aspnetElearnContext();
-       
+        private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IHttpContextAccessor httpContextAccessor)
         {
             SetUnitStyle();
+            _httpContextAccessor = httpContextAccessor;
+          //  var userId = _httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
             _logger = logger;
+          
         }
 
         public void SetUnitStyle()
@@ -30,7 +35,7 @@ namespace Elearn.Controllers
 
         public IActionResult Index()
         {
-
+            
             return View();
         }
      

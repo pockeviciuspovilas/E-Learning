@@ -1,5 +1,5 @@
 ﻿let units = new Object()
-
+let aspRoles = new Object()
 function getUnits() {
     $.ajax({
         type: "GET",
@@ -8,6 +8,14 @@ function getUnits() {
         success: function (data) {
             units = data
             generateTable(units)
+            $.ajax({
+                type: "GET",
+                dataType: "json",
+                url: "/Unit/GetAspRoles",
+                success: function (data) {
+                    aspRoles = data
+                }
+            })
         }
     })
 }
