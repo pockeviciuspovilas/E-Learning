@@ -35,6 +35,22 @@ html {
   }
 }
 
+.quill-question{
+    margin:25px 0px 25px 0px;
+    padding:20px 15px 20px 15px;
+    border-radius:15px 15px;
+    border-style:solid;
+    border-width: 1px;
+    border-color:gray;
+    background-color:azure;
+}
+
+.quill-answer {
+    margin: 25px 0px 25px 0px;
+    padding: 20px 50px 20px 50px;
+    background-color:aliceblue;
+}
+
 .border-top {
   border-top: 1px solid #e5e5e5;
 }
