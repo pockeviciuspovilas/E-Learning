@@ -20521,13 +20521,33 @@
   "RootNamespace": "Elearn",
   "Documents": [
     {
+      "FilePath": "c:\\Users\\MyPC\\Documents\\GitHub\\E-Learning\\Elearn\\Views\\Assign\\AddNewAssigns.cshtml",
+      "TargetPath": "Views\\Assign\\AddNewAssigns.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\MyPC\\Documents\\GitHub\\E-Learning\\Elearn\\Areas\\Identity\\Pages\\_ViewStart.cshtml",
       "TargetPath": "Areas\\Identity\\Pages\\_ViewStart.cshtml",
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\MyPC\\Documents\\GitHub\\E-Learning\\Elearn\\Views\\Report\\Shared\\_Layout.cshtml",
+      "TargetPath": "Views\\Report\\Shared\\_Layout.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\MyPC\\Documents\\GitHub\\E-Learning\\Elearn\\Views\\Report\\Index.cshtml",
+      "TargetPath": "Views\\Report\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\MyPC\\Documents\\GitHub\\E-Learning\\Elearn\\Views\\Shared\\_LoginPartial.cshtml",
       "TargetPath": "Views\\Shared\\_LoginPartial.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\MyPC\\Documents\\GitHub\\E-Learning\\Elearn\\Views\\Assign\\AssignNew.cshtml",
+      "TargetPath": "Views\\Assign\\AssignNew.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -20546,8 +20566,18 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\MyPC\\Documents\\GitHub\\E-Learning\\Elearn\\Views\\Assign\\Delete.cshtml",
+      "TargetPath": "Views\\Assign\\Delete.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\MyPC\\Documents\\GitHub\\E-Learning\\Elearn\\Views\\Shared\\Error.cshtml",
       "TargetPath": "Views\\Shared\\Error.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\MyPC\\Documents\\GitHub\\E-Learning\\Elearn\\Views\\Assign\\AssignedTests.cshtml",
+      "TargetPath": "Views\\Assign\\AssignedTests.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -20561,6 +20591,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\MyPC\\Documents\\GitHub\\E-Learning\\Elearn\\Views\\Assign\\Index.cshtml",
+      "TargetPath": "Views\\Assign\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\MyPC\\Documents\\GitHub\\E-Learning\\Elearn\\Views\\Shared\\_Layout.cshtml",
       "TargetPath": "Views\\Shared\\_Layout.cshtml",
       "FileKind": "mvc"
@@ -20568,6 +20603,11 @@
     {
       "FilePath": "c:\\Users\\MyPC\\Documents\\GitHub\\E-Learning\\Elearn\\Views\\Test\\MyTests.cshtml",
       "TargetPath": "Views\\Test\\MyTests.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\MyPC\\Documents\\GitHub\\E-Learning\\Elearn\\Views\\Report\\UserReport.cshtml",
+      "TargetPath": "Views\\Report\\UserReport.cshtml",
       "FileKind": "mvc"
     },
     {

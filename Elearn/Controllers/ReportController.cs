@@ -13,25 +13,27 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Elearn.Controllers
 {
-    public class TestController : Controller
+    public class ReportController : Controller
     {
         aspnetElearnContext context = new aspnetElearnContext();
-        string userId;
-        public TestController()
+        public ReportController()
         {
-
+            
         }
 
         public IActionResult Index()
         {
-
             return View();
         }
-        public IActionResult MyTests()
+        public IActionResult UserReport(string userId)
         {
+
+            
+            userId = userId !=null? userId : HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            ViewData["User"] = context.AspNetUsers.Where(x => x.Id == userId).SingleOrDefault().UserName;
             var assignWithResults = context.Asign.Include(x => x.Result).Include(y => y.Test).Include(z=> z.Applicant);
             var query = (from asigns in assignWithResults
-                        where asigns.ApplicantId == HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value
+                        where asigns.ApplicantId == userId
                         select asigns).ToList();
                     
             return View(query);

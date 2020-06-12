@@ -1,0 +1,17 @@
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm">
+        <a href="@Url.Action("UserReport", "Report")"><button type="button" class="btn btn-primary btn-lg btn-block" style="min-height: 150px">Generuoti ataskaitą pagal vartotoją</button></a>
+    </div>
+    <div class="col-sm">
+        <a href="@Url.Action("GenerateReportByCategory", "Report")"><button type="button" class="btn btn-primary btn-lg btn-block" style="min-height: 150px">Generuoti ataskaitą pagal kategoriją</button></a>
+    </div>
+    <div class="col-sm">
+        <a href="@Url.Action("GenerateReportByDate", "Report")"><button type="button" class="btn btn-primary btn-lg btn-block" style="min-height: 150px">Generuoti ataskaitą pagal laiką</button></a>
+    </div>
+  </div>
+</div

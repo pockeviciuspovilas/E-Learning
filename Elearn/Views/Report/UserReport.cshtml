@@ -1,9 +1,14 @@
 @model List<Elearn.Models.Asign>
 
 @{
+    Layout = "~/Views/Report/Shared/_Layout.cshtml";
     ViewData["Title"] = "Mano testai";
+    int completedTests = 0;
+    int pendingTests = 0;
+    double markSum = 0;
+    
 }
-
+<h2>@ViewBag.User naudotojo ataskaita</h2>
 <table class="table table-hover">
   <thead>
     <tr>
@@ -15,8 +20,20 @@
   <tbody>
 @for(int i=0;i < Model.Count; i++)
 {
+    
+
+
     string Mark = Model[i].Result.SingleOrDefault() != null ?
     Model[i].Result.SingleOrDefault().Mark.ToString() : "-1" ;
+
+    if(int.Parse(Mark)>=0)
+    {
+        completedTests++;
+        markSum+= int.Parse(Mark);
+    }
+       
+    if(int.Parse(Mark)==-2)
+        pendingTests++;
     string Date = Model[i].Result.SingleOrDefault() != null && Model[i].Result.SingleOrDefault().CompleteTime!= null ?
       Model[i].Result.SingleOrDefault().CompleteTime.ToString() : "Nespręsta" ;
     if(Date == "1/1/2000 12:00:00 AM")
@@ -48,3 +65,15 @@
 } 
   </tbody>
 </table>
+</br>
+</br>
+  <div class="row">
+    <div class="col">
+        <text> Naudotojui priskirta testų: <strong> @Model.Count</strong></text></br>
+        <text> Naudotojas išsprendęs testų: <strong> @completedTests</strong></text></br>
+        <text> Laukiama vertinimo: <strong> @pendingTests</strong></text></br>
+    </div>
+    <div class="col">
+        <h3>Naudotojo pažymių vidurkis: @(markSum/completedTests)</h3>
+    </div>
+  </div>

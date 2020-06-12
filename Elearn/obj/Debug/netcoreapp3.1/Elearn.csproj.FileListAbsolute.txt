@@ -174,3 +174,12 @@ C:\Users\MyPC\Documents\GitHub\E-Learning\Elearn\obj\Debug\netcoreapp3.1\Elearn.
 C:\Users\MyPC\Documents\GitHub\E-Learning\Elearn\obj\Debug\netcoreapp3.1\Elearn.genruntimeconfig.cache
 C:\Users\MyPC\Documents\GitHub\E-Learning\Elearn\obj\Debug\netcoreapp3.1\Razor\Views\Test\Index.cshtml.g.cs
 C:\Users\MyPC\Documents\GitHub\E-Learning\Elearn\obj\Debug\netcoreapp3.1\Razor\Views\Test\MyTests.cshtml.g.cs
+C:\Users\MyPC\Documents\GitHub\E-Learning\Elearn\obj\Debug\netcoreapp3.1\Razor\Views\Assign\AssignedTests.cshtml.g.cs
+C:\Users\MyPC\Documents\GitHub\E-Learning\Elearn\obj\Debug\netcoreapp3.1\Razor\Views\Assign\Index.cshtml.g.cs
+C:\Users\MyPC\Documents\GitHub\E-Learning\Elearn\obj\Debug\netcoreapp3.1\Razor\Views\Assign\Delete.cshtml.g.cs
+C:\Users\MyPC\Documents\GitHub\E-Learning\Elearn\obj\Debug\netcoreapp3.1\Razor\Views\Assign\AssignNew.cshtml.g.cs
+C:\Users\MyPC\Documents\GitHub\E-Learning\Elearn\obj\Debug\netcoreapp3.1\Razor\Views\Assign\AddNewAssigns.cshtml.g.cs
+C:\Users\MyPC\Documents\GitHub\E-Learning\Elearn\bin\Debug\netcoreapp3.1\itextsharp.dll
+C:\Users\MyPC\Documents\GitHub\E-Learning\Elearn\obj\Debug\netcoreapp3.1\Razor\Views\Report\Index.cshtml.g.cs
+C:\Users\MyPC\Documents\GitHub\E-Learning\Elearn\obj\Debug\netcoreapp3.1\Razor\Views\Report\Shared\_Layout.cshtml.g.cs
+C:\Users\MyPC\Documents\GitHub\E-Learning\Elearn\obj\Debug\netcoreapp3.1\Razor\Views\Report\UserReport.cshtml.g.cs
