@@ -13,6 +13,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Elearn.Models;
+using Rotativa.AspNetCore;
 
 namespace Elearn
 {
@@ -92,6 +93,7 @@ namespace Elearn
                     pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
             });
+            RotativaConfiguration.Setup(env.WebRootPath, "Rotativa");
         }
     }
 }

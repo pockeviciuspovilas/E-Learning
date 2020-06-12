@@ -20601,6 +20601,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\MyPC\\Documents\\GitHub\\E-Learning\\Elearn\\Views\\Report\\CategoryReport.cshtml",
+      "TargetPath": "Views\\Report\\CategoryReport.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\MyPC\\Documents\\GitHub\\E-Learning\\Elearn\\Views\\Test\\MyTests.cshtml",
       "TargetPath": "Views\\Test\\MyTests.cshtml",
       "FileKind": "mvc"

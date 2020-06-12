@@ -4,7 +4,7 @@
     ViewData["Title"] = "Priskirti testai";
 }
 
-<table class="table table-hover">
+<table class="table table-hover table-responsive">
   <thead>
     <tr>
       <th scope="col">Pabaigos data</th>
@@ -21,7 +21,29 @@
     <th scope="row">@Model[i].ExpireDate</th>
     <td>@Model[i].Test.Name</td>
     <td>@Model[i].Applicant.UserName</td>
-    <td>@(Model[i].Result.Count != 0 ? Model[i].Result.SingleOrDefault().Mark : 0)</td>
+    <td>
+      @if(Model[i].Result.Count != 0)
+      {
+        if(Model[i].Result.SingleOrDefault().Mark >= 0)
+        {
+          <text>Model[i].Result.SingleOrDefault().Mark</text>
+        }
+        else if(Model[i].Result.SingleOrDefault().Mark == -1)
+        {
+          <text>Nespręsta</text>
+        }
+        else if(Model[i].Result.SingleOrDefault().Mark == -2)
+        {
+          <text>Neįvertinta</text>
+        }
+      }
+      else
+      {
+        <text>0</text>
+      }
+
+
+    </td>
     <td><input type="button" value="Delete" onclick="location.href='@Url.Action("Delete", "Assign")?id=@Model[i].Id'" /></td>
     </tr>
   } 
