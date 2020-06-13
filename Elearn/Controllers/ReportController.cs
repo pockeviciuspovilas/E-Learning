@@ -46,12 +46,41 @@ namespace Elearn.Controllers
                     
             return View(query);
         }
+        public IActionResult TimeReport()
+        {
+            
+            if(Request.Form.ContainsKey("Begin")&&Request.Form.ContainsKey("End"))
+            {
+                DateTime begin = DateTime.Parse(Request.Form["Begin"]);
+                DateTime end = DateTime.Parse(Request.Form["End"]);
+                ViewData["begin"] = begin.ToString();
+                ViewData["end"] = end.ToString();
+            
+
+            var assignWithResults = context.Asign.Include(x => x.Result).Include(y => y.Test).Include(z=> z.Applicant);
+
+            var query = (from asign in assignWithResults
+                        where (asign.AsignerId == HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value && asign.InsertTime >= begin && asign.InsertTime <= end)
+                        select asign).ToList();
+                    
+            if(Request.Form.Keys.Contains("showReport"))
+                {
+                    return View(query);
+                }
+                if(Request.Form.Keys.Contains("downloadReport"))
+                {   
+                    return new ViewAsPdf("TimeReport", query, ViewData) { FileName = "userreport.pdf" };
+                }
+            }
+            return View();
+
+        }
         public IActionResult CategoryReport()
         {
             int categoryId; 
             if(int.TryParse(Request.Form["TestCategory"], out categoryId))
             {
-                                    var completedCountList = new List<int>();
+                    var completedCountList = new List<int>();
                     var averageList = new List<double>();
                     var participantCountList = new List<int>();
                     var tests = context.Test.Where(x => categoryId == x.CategoryId).ToList();

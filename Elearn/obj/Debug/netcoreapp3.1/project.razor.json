@@ -20546,6 +20546,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\MyPC\\Documents\\GitHub\\E-Learning\\Elearn\\Views\\Report\\TimeReport.cshtml",
+      "TargetPath": "Views\\Report\\TimeReport.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\MyPC\\Documents\\GitHub\\E-Learning\\Elearn\\Views\\Assign\\AssignNew.cshtml",
       "TargetPath": "Views\\Assign\\AssignNew.cshtml",
       "FileKind": "mvc"

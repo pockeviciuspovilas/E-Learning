@@ -202,3 +202,4 @@ C:\Users\MyPC\Documents\GitHub\E-Learning\Elearn\bin\Debug\netcoreapp3.1\System.
 C:\Users\MyPC\Documents\GitHub\E-Learning\Elearn\bin\Debug\netcoreapp3.1\Microsoft.Web.Infrastructure.dll
 C:\Users\MyPC\Documents\GitHub\E-Learning\Elearn\bin\Debug\netcoreapp3.1\Rotativa.dll
 C:\Users\MyPC\Documents\GitHub\E-Learning\Elearn\obj\Debug\netcoreapp3.1\Razor\Views\Report\CategoryReport.cshtml.g.cs
+C:\Users\MyPC\Documents\GitHub\E-Learning\Elearn\obj\Debug\netcoreapp3.1\Razor\Views\Report\TimeReport.cshtml.g.cs
