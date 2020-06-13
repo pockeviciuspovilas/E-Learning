@@ -1,0 +1,78 @@
+@model List<Elearn.Models.Asign>
+
+@{
+    Layout = "~/Views/Report/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Mano testai";
+    int completedTests = 0;
+    int pendingTests = 0;
+    double markSum = 0;
+    
+}
+<h2>@ViewBag.begin - @ViewBag.end laikotarpio ataskaita</h2>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Uždavimo data</th>
+      <th scope="col">Skirta naudotojui</th>
+      <th scope="col">Testo pavadinimas</th>
+      <th scope="col">Balas</th>
+    </tr>
+  </thead>
+  <tbody>
+@for(int i=0;i < Model.Count; i++)
+{
+    string Mark = Model[i].Result.SingleOrDefault() != null ?
+    Model[i].Result.SingleOrDefault().Mark.ToString() : "-1" ;
+
+    if(int.Parse(Mark)>=0)
+    {
+        completedTests++;
+        markSum+= int.Parse(Mark);
+    }
+       
+    if(int.Parse(Mark)==-2)
+        pendingTests++;
+    string Date = Model[i].Result.SingleOrDefault() != null && Model[i].Result.SingleOrDefault().CompleteTime!= null ?
+      Model[i].Result.SingleOrDefault().CompleteTime.ToString() : "Nespręsta" ;
+    if(Date == "1/1/2000 12:00:00 AM")
+      Date = "Nespręsta";
+    string MarkPercent = Mark + "%";
+    @:
+    <tr>
+    <th scope="row">@Model[i].InsertTime</th>
+    <td>@Model[i].Applicant.UserName</td>
+    <td>@Model[i].Test.Name</td>
+    <td>
+      @if(Mark == "-2")
+      {
+        <text>Laukiama rezultato</text>
+      }
+      else if (Mark == "-1")
+      {
+        <text>Testas nespręstas</text>
+      }
+      else
+      {
+        <div class="progress"> 
+            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="@Mark" aria-valuemin="0" aria-valuemax="100" style="width: @MarkPercent"><strong>@MarkPercent</strong></div>
+        </div>
+      }
+        
+    </td>
+    </tr>
+
+} 
+  </tbody>
+</table>
+</br>
+</br>
+  <div class="row">
+    <div class="col">
+        <text> Priskirta testų: <strong> @Model.Count</strong></text></br>
+        <text> Išspręsta testų: <strong> @completedTests</strong></text></br>
+        <text> Laukiama vertinimo: <strong> @pendingTests</strong></text></br>
+    </div>
+    <div class="col">
+        <h3>Laikotarpio pažymių vidurkis: @(markSum/completedTests)</h3>
+    </div>
+  </div>
