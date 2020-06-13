@@ -4,7 +4,17 @@
     ViewData["Title"] = "Priskirti testai";
 }
 <form asp-action="AddNewAssigns">
+    <h3>Pasirinktas testas:</h3>
     @Html.DropDownList("Test", ViewBag.TestId, "Pasirinkite testą", new { @class = "form-control" })
+    <h3>Pabaigos data:</h3>
+    <input type="datetime-local" name ="ExprDate"/>
+    <h3>Pasirinkite naudotojų kategoriją:</h3>
+    @Html.DropDownList("Category", ViewBag.CategoryId, "Pasirinkite kategoriją", new { @class = "form-control" })
+    </br>
+    <input type="submit" value="Priskirti kategorijai" class="btn btn-primary" name ="assignCat"/>
+    </br>
+    </br>
+    <h3>Arba pasirinkite naudotojus iš sąrašo:</h3>
     <table class="table table-hover">
     <thead>
         <tr>
@@ -28,6 +38,6 @@
         </tbody>
     </table>
      <div class="form-group">
-        <input type="submit" value="Priskirti" class="btn btn-primary" />
+        <input type="submit" value="Priskirti naudotojams" class="btn btn-primary" name="assignusers" />
     </div>
 </form>

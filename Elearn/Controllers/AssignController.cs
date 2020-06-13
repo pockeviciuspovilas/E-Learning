@@ -55,21 +55,28 @@ namespace Elearn.Controllers
                                                 
             var unitUsers = context.AspNetUsers.Where(x => x.Unit.SingleOrDefault().Id == currentUser.Unit.FirstOrDefault().Id).ToList();
             var fullTests = context.Test.Include("Category").Where(x => x.Category.Id == currentUser.Unit.FirstOrDefault().Id).ToList();
-
+            var unitCategories = context.UnitCategory.Where(x => x.UnitId == currentUser.Unit.SingleOrDefault().Id);
             ViewData["TestId"] = new SelectList(fullTests, "Id", "Name");
+            ViewData["CategoryId"] = new SelectList(unitCategories, "Id", "Name");
             return View(unitUsers);
         }
         public IActionResult AddNewAssigns()
         {
             int test = int.Parse(Request.Form["Test"]);
+            var date = DateTime.Parse(Request.Form["ExprDate"]);
 
             var currentUser = context.AspNetUsers.Where(x => x.Id == HttpContext.User
                                                 .FindFirst(ClaimTypes.NameIdentifier).Value)
                                                 .Include("Unit")
                                                 .SingleOrDefault();
 
-            List<string> userIds = Request.Form.Keys.ToList();
-            for(int i=1;i<userIds.Count-1;i++)
+            List<string> userIds = Request.Form.Keys.Contains("assignCat") ?
+                context.AspNetUsers.Where(x => x.CategoryId != null && x.CategoryId != int.Parse(Request.Form["Category"])).Select(y => y.Id).ToList() :
+                Request.Form.Keys.ToList().GetRange(3,Request.Form.Keys.Count - 5);
+
+
+            Console.WriteLine("test");
+            for(int i=0;i<userIds.Count;i++)
             {
                 
                 Asign newAsign = new Asign()
@@ -78,8 +85,7 @@ namespace Elearn.Controllers
                     AsignerId = currentUser.Id,
                     InsertTime = DateTime.UtcNow,
                     TestId = test,
-                    ExpireDate = DateTime.UtcNow,
-
+                    ExpireDate = date
                 };
                 context.Asign.Add(newAsign);
 

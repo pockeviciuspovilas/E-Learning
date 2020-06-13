@@ -4,7 +4,7 @@
     ViewData["Title"] = "Priskirti testai";
 }
 
-<table class="table table-hover table-responsive">
+<table class="table table-hover table-responsive-lg">
   <thead>
     <tr>
       <th scope="col">Pabaigos data</th>
@@ -26,7 +26,7 @@
       {
         if(Model[i].Result.SingleOrDefault().Mark >= 0)
         {
-          <text>Model[i].Result.SingleOrDefault().Mark</text>
+          @Model[i].Result.SingleOrDefault().Mark
         }
         else if(Model[i].Result.SingleOrDefault().Mark == -1)
         {
