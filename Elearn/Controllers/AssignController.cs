@@ -54,7 +54,7 @@ namespace Elearn.Controllers
                                                 .SingleOrDefault();
                                                 
             var unitUsers = context.AspNetUsers.Where(x => x.Unit.SingleOrDefault().Id == currentUser.Unit.FirstOrDefault().Id).ToList();
-            var fullTests = context.Test.Include("Category").Where(x => x.Category.Id == currentUser.Unit.FirstOrDefault().Id).ToList();
+            var fullTests = context.Test.Include("Category").Where(x => x.Category.UnitId == currentUser.Unit.FirstOrDefault().Id).ToList();
 
             ViewData["TestId"] = new SelectList(fullTests, "Id", "Name");
             return View(unitUsers);
@@ -106,6 +106,18 @@ namespace Elearn.Controllers
             return RedirectToAction("AssignNew", "Assign");
         }
 
-        
+
+        public IActionResult GetCurrentAssigns()
+        {
+            List<Asign> assigns = new List<Asign>();
+
+            string username = this.User.FindFirstValue(ClaimTypes.Name);
+            AspNetUsers user = context.AspNetUsers.Where(x => x.UserName == username).First();
+            
+            return Json(context.Asign.Where(x=>x.ApplicantId == user.Id).Include(x=>x.Test));
+        }
+
+
+
     }
 }

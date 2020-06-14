@@ -1,0 +1,43 @@
+﻿@{
+    ViewData["Title"] = "Test creation";
+}
+
+<link href="//cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+<link href="//cdn.quilljs.com/1.3.6/quill.bubble.css" rel="stylesheet">
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="~/js/testCreate.js"></script>
+
+<h1>@ViewData["Title"]</h1>
+<p>Use this page to create test.</p>
+<hr />
+<div class="form-group">
+    <label>Test name</label>
+    <input id="testName" type="text" class="form-control" />
+</div>
+<div class="form-group">
+    <label>Duration (minutes)</label>
+    <input id="duration" type="number" min="0" step="1" class="form-control" />
+</div>
+<div class="form-group">
+    <label>Categories</label>
+    <select class="form-control" id="testCategories"></select>
+</div>
+
+<div class="form-group">
+    <button class="btn btn-primary" onclick="createQuestion()">Add question</button>
+</div>
+
+
+<div class="container" id="editor">
+
+</div>
+
+<hr />
+<div class="form-group">
+    <button class="btn btn-primary" onclick="createTest()">Create Test</button>
+</div>
+
+
+
+

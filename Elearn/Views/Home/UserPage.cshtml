@@ -1,0 +1,24 @@
+@{
+    ViewData["Title"] = "User page";
+}
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="~/js/userPage.js"></script>
+
+<h1>@ViewData["Title"]</h1>
+<div class="container">
+    <div class="col-6">
+        <h3>Current tests</h3>
+        <table class="table table-responsive-lg">
+            <thead>
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody id="testsTBody">
+            </tbody>
+        </table>
+    </div>
+
+</div>
