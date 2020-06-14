@@ -4,14 +4,6 @@ using System.Linq;
 using System.Security.Claims;
 using System.Collections.Generic;
 using System;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using Microsoft.AspNetCore.Authorization;
-using System.Security.Principal;
-using System.Security.Claims;
 using Microsoft.EntityFrameworkCore;
 
 namespace Elearn.Controllers
@@ -37,10 +29,10 @@ namespace Elearn.Controllers
         {
             List<Test> tests = new List<Test>();
             string username = this.User.FindFirstValue(ClaimTypes.Name);
-            AspNetUsers user = context.AspNetUsers.Where(x => x.UserName == username).Include(x => x.Unit).First();
+            AspNetUsers user = context.AspNetUsers.Where(x => x.UserName == username).Include(x => x.Unit).Include(x => x.Category).First();
             Unit unit = context.Unit.Where(x => x.UserId == user.Id).First();
           
-            return Json(tests);
+            return Json(context.Test.ToList());
         }
 
         public IActionResult GetTestCategories()
@@ -109,6 +101,7 @@ namespace Elearn.Controllers
             test.InsertTime = DateTime.Now;
             test.Json = json;
             test.UserId = user.Id;
+            test.Name = name;
             test.CategoryId = categoryId;
 
             context.Test.Add(test);

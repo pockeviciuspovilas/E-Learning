@@ -22,6 +22,7 @@ function getUnits() {
 
 function generateTable(units) {
     let usersTbody = document.getElementById('unitsTbody');
+    console.log("generateTable")
     if (usersTbody != null) {
         usersTbody.innerHTML = "";
         for (var i = 0; i < units.length; i++) {
@@ -71,8 +72,6 @@ function editDesign(index) {
 function unitControl() {
     let unitUserSelect = document.getElementById('unitUserSelect')
     getUnits()
-    document.getElementById('state').innerText = 'Create Unit'
-    document.getElementById('unitCreateButton').innerText = 'Create'
     if (unitUserSelect != null) {
         getAvailableUsers(unitUserSelect);
         let url = new URL(window.location.href)
@@ -81,6 +80,10 @@ function unitControl() {
             document.getElementById('unitCreateButton').innerText = 'Update'
             setUnit(url.searchParams.get("id"));
 
+        }
+        else {
+            document.getElementById('state').innerText = 'Create Unit'
+            document.getElementById('unitCreateButton').innerText = 'Create'
         }
     }
 }

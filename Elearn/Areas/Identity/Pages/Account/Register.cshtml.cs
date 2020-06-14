@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Security.Claims;
 using System.Text;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
@@ -13,11 +14,12 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
 namespace Elearn.Areas.Identity.Pages.Account
 {
-    [Authorize(Roles = "SuperAdmin,Admin")]
+    [Authorize]
     public class RegisterModel : PageModel
     {
         private readonly SignInManager<IdentityUser> _signInManager;
@@ -91,6 +93,17 @@ namespace Elearn.Areas.Identity.Pages.Account
                 {
                     AspNetUsers insertedUser = context.AspNetUsers.Where(x => x.Email == Input.Email).First();
                     insertedUser.Rfid = Input.HEX;
+
+                    string username = this.User.FindFirstValue(ClaimTypes.Name);
+                    if (context.AspNetUsers.Where(x => x.UserName == username).Include(x => x.Unit).ToList().Count() > 0)
+                    {
+                        AspNetUsers usr = context.AspNetUsers.Where(x => x.UserName == username).Include(x => x.Unit).First();
+                        Unit unit = context.Unit.Where(x => x.UserId == usr.Id).First();
+                        insertedUser.Unit.Add(unit);
+                    }
+                  
+
+
                     context.SaveChanges();
                     return RedirectToPage("User");
 

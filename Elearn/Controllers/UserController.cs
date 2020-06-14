@@ -67,7 +67,7 @@ namespace Elearn.Controllers
         {
             string username = this.User.FindFirstValue(ClaimTypes.Name);
 
-            AspNetUsers user = context.AspNetUsers.Where(x => x.UserName == username).Include(x => x.Unit).Include(x=>x.Category).First();
+            AspNetUsers user = context.AspNetUsers.Where(x => x.UserName == username).Include(x => x.Unit).Include(x => x.Category).First();
 
             UnitCategory testCategory = new UnitCategory();
 
@@ -97,10 +97,17 @@ namespace Elearn.Controllers
         public IActionResult GetUnitCategories()
         {
             string username = this.User.FindFirstValue(ClaimTypes.Name);
-            AspNetUsers user = context.AspNetUsers.Where(x => x.UserName == username).Include(x => x.Unit).Include(x=>x.Category).First();
-            Unit unit = context.Unit.Where(x => x.UserId == user.Id).First();
-            var categories = context.UnitCategory.Where(x => x.UnitId == unit.Id).ToList();
-            return Json(categories);
+            AspNetUsers user = context.AspNetUsers.Where(x => x.UserName == username).Include(x => x.Unit).Include(x => x.Category).First();
+
+            List<Unit> units = context.Unit.Where(x => x.UserId == user.Id).ToList();
+            if (units.Count > 0)
+            {
+                Unit unit = context.Unit.Where(x => x.UserId == user.Id).First();
+                var categories = context.UnitCategory.Where(x => x.UnitId == unit.Id).ToList();
+                return Json(categories);
+            }
+
+            return Json("");
         }
 
         public IActionResult GetAvailableUsers()
@@ -137,6 +144,7 @@ namespace Elearn.Controllers
             if (context.AspNetUsers.AsNoTracking().Where(x => x == parsedUser).ToList().Count > 0)
             {
                 context.AspNetUsers.Remove(parsedUser);
+
                 context.SaveChanges();
                 return Json("OK");
             }
@@ -147,7 +155,7 @@ namespace Elearn.Controllers
 
         }
 
-        [Authorize(Roles = "SuperAdmin, Admin")]
+
         public IActionResult Index()
         {
             return View();
@@ -156,16 +164,21 @@ namespace Elearn.Controllers
         public IActionResult UpdateUser(string userId, string roleId, int unitId)
         {
             AspNetUsers user = context.AspNetUsers.Where(x => x.Id == userId).Include(x => x.AspNetUserRoles).Include(x => x.Unit).First();
-            user.CategoryId = unitId;
-            context.SaveChanges();
+            if (unitId > 0)
+            {
+                user.CategoryId = unitId;
+                context.SaveChanges();
+            }
+
+
             if (user.AspNetUserRoles.Count() > 0)
             {
                 user.AspNetUserRoles.Remove(user.AspNetUserRoles.First());
             }
 
-      
+
             AspNetUserRoles role = new AspNetUserRoles();
-          
+
             role.RoleId = roleId;
             role.UserId = userId;
             context.AspNetUserRoles.Add(role);

@@ -59,7 +59,18 @@ $.ajax({
                 let testsTBody = document.getElementById('testsTBody')
                 testsTBody.innerHTML = "";
                 for (var i = 0; i < tests.length; i++) {
-                    testsTBody.insertAdjacentHTML("beforeend", "<tr> <td>" + testCategories[i].name + "</td> <td><button class='btn btn-danger' onclick='RemoveTestCategory(" + testCategories[i].id + ")'> Delete </button> </td>  <td><button class='btn btn-warning' onclick='EditTestCategory(" + testCategories[i].id + ")' > Edit </button> </td>  </tr>")
+                    let testUser = null;
+                    if (tests[i].user != null) {
+                        testUser = tests[i].user.userName
+                    }
+                    let category = null;
+                    for (var n = 0; n < testCategories.length; n++) {
+                        if (testCategories[n].id == tests[i].categoryId) {
+                            category = testCategories[i].name
+                            break;
+                        }
+                    }
+                    testsTBody.insertAdjacentHTML("beforeend", "<tr> <td>" + tests[i].name + "</td> <td>" + testUser + "</td> <td>" + tests[i].insertTime + "</td> <td>" + tests[i].updateUserId + "</td> <td>" + tests[i].updateTime + "</td> <td>" + category + "</td> <td><button class='btn btn-danger' onclick='RemoveTest(" + tests[i].id + ")'> Delete </button> </td>  <td><button class='btn btn-warning' onclick='EditTest(" + tests[i].id + ")' > Edit </button> </td>  </tr>")
                 }
             }
         })
@@ -82,7 +93,7 @@ function EditTestCategory(id) {
             document.getElementById('categoryInput').value = testCategories[i].name;
             break;
         }
-      
+
     }
 
     $('#testCategoryModal').modal('show');
