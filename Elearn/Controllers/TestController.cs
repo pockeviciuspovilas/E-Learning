@@ -25,6 +25,11 @@ namespace Elearn.Controllers
             return Json("OK");
         }
 
+        public IActionResult Window()
+        {
+            return View();
+        }
+
         public IActionResult GetTests()
         {
             List<Test> tests = new List<Test>();
@@ -33,6 +38,14 @@ namespace Elearn.Controllers
             Unit unit = context.Unit.Where(x => x.UserId == user.Id).First();
           
             return Json(context.Test.ToList());
+        }
+
+        public IActionResult GetTest(int assignId)
+        {
+            Asign asign = new Asign();
+            asign = context.Asign.Where(x => x.Id == assignId).Include(x => x.Test).First();
+          
+            return Json(asign);
         }
 
         public IActionResult GetTestCategories()
