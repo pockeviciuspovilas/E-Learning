@@ -7,6 +7,7 @@ using System.Linq;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
 
 namespace Elearn.Controllers
 {
@@ -38,6 +39,69 @@ namespace Elearn.Controllers
             return Json(context.AspNetRoles.ToList());
         }
 
+        public IActionResult EditUnitCategory(string name, int id)
+        {
+            UnitCategory category = context.UnitCategory.Where(x => x.Id == id).First();
+            foreach (var cat in context.UnitCategory.ToList())
+            {
+                if (cat.Name == name)
+                {
+                    return Json("OK");
+                }
+            }
+
+            category.Name = name;
+            context.SaveChanges();
+            return Json("OK");
+        }
+
+        public IActionResult RemoveUnitCategory(int id)
+        {
+            UnitCategory category = context.UnitCategory.Where(x => x.Id == id).First();
+            context.UnitCategory.Remove(category);
+            context.SaveChanges();
+            return Json("OK");
+        }
+
+        public IActionResult CreateUnitCategory(string name)
+        {
+            string username = this.User.FindFirstValue(ClaimTypes.Name);
+
+            AspNetUsers user = context.AspNetUsers.Where(x => x.UserName == username).Include(x => x.Unit).Include(x=>x.Category).First();
+
+            UnitCategory testCategory = new UnitCategory();
+
+            testCategory.Name = name;
+            testCategory.UnitId = user.Unit.First().Id;
+
+            var categories = context.UnitCategory.Where(x => x.UnitId == testCategory.UnitId).ToList();
+            bool isExists = false;
+            foreach (var cat in categories)
+            {
+                if (cat.Name == name)
+                {
+                    isExists = true;
+                    break;
+                }
+            }
+            if (!isExists)
+            {
+                context.UnitCategory.Add(testCategory);
+                context.SaveChanges();
+            }
+
+
+            return Json("OK");
+        }
+
+        public IActionResult GetUnitCategories()
+        {
+            string username = this.User.FindFirstValue(ClaimTypes.Name);
+            AspNetUsers user = context.AspNetUsers.Where(x => x.UserName == username).Include(x => x.Unit).Include(x=>x.Category).First();
+            Unit unit = context.Unit.Where(x => x.UserId == user.Id).First();
+            var categories = context.UnitCategory.Where(x => x.UnitId == unit.Id).ToList();
+            return Json(categories);
+        }
 
         public IActionResult GetAvailableUsers()
         {
@@ -83,7 +147,7 @@ namespace Elearn.Controllers
 
         }
 
-        [Authorize(Roles = "SuperAdmin")]
+        [Authorize(Roles = "SuperAdmin, Admin")]
         public IActionResult Index()
         {
             return View();
@@ -92,6 +156,8 @@ namespace Elearn.Controllers
         public IActionResult UpdateUser(string userId, string roleId, int unitId)
         {
             AspNetUsers user = context.AspNetUsers.Where(x => x.Id == userId).Include(x => x.AspNetUserRoles).Include(x => x.Unit).First();
+            user.CategoryId = unitId;
+            context.SaveChanges();
             if (user.AspNetUserRoles.Count() > 0)
             {
                 user.AspNetUserRoles.Remove(user.AspNetUserRoles.First());
@@ -99,6 +165,7 @@ namespace Elearn.Controllers
 
       
             AspNetUserRoles role = new AspNetUserRoles();
+          
             role.RoleId = roleId;
             role.UserId = userId;
             context.AspNetUserRoles.Add(role);

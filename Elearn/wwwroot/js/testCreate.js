@@ -2,6 +2,22 @@
 $.getScript('//cdn.quilljs.com/1.3.6/quill.js', function () {
     console.log("loaded")
 });
+
+let testCategories = new Object();
+$.ajax({
+    type: "GET",
+    dataType: "json",
+    url: "/Test/GetTestCategories",
+    success: function (data) {
+        testCategories = data;
+        let elem = document.getElementById('testCategories')
+        elem.innerHTML = "";
+        for (var i = 0; i < testCategories.length; i++) {
+            elem.insertAdjacentHTML("beforeend", "<option value = '" + testCategories[i].id + "'>" + testCategories[i].name + "</option>")
+        }
+    }
+})
+
 function createQuillQuestion(id) {
 
     new Quill(`#qs-${id}`, {
@@ -151,3 +167,97 @@ function initializeCheck(parent) {
 function RemoveQuestion(id) {
     document.getElementById(id).remove()
 }
+
+function createTest() {
+    let test = new Test();
+    test.name = document.getElementById('testName').value;
+    test.duration = document.getElementById('duration').value;
+    let editor = document.getElementById('editor').children;
+
+    test.questions = getQuestions(editor)
+
+    var seen = [];
+
+    seen= JSON.stringify(test, function (key, val) {
+        if (val != null && typeof val == "object") {
+            if (seen.indexOf(val) >= 0) {
+                return;
+            }
+            seen.push(val);
+        }
+        return val;
+    });
+    console.log(test)
+    console.log(JSON.stringify(test))
+
+    $.ajax({
+        type: "POST",
+        dataType: "json",
+        data: {
+            name: test.name,
+            categoryId: document.getElementById('testCategories').value,
+            duration: test.duration,
+            json: JSON.stringify(test),
+        },
+        url: "/Test/CreateTest",
+        success: function (data) {
+            if (data == "OK") {
+                location.href = "/Test"
+            }
+        }
+    })
+
+}
+
+function getQuestions(editorNodes) {
+    let questions = new Array();
+    for (var i = 0; i < editorNodes.length; i++) {
+        let question = new Question();
+        let answers = new Array();
+        question.question = editorNodes[i].children[3].children[0].innerHTML
+        question.answerType = "NAN"
+        if (editorNodes[i].children[4].children[0].innerText == "Add radio answers") {
+            question.answerType = "radio"
+        }
+        else {
+            question.answerType = "check"
+        }
+
+        for (var n = 1; n < editorNodes[i].children[4].children.length; n++) {
+            let answer = new Answer();
+            answer.isCorrect = editorNodes[i].children[4].children[n].children[1].checked
+            answer.answer = editorNodes[i].children[4].children[n].children[4].children[0].innerHTML
+            answers.push(answer)
+        }
+
+        question.answers = answers;
+        questions.push(question)
+    }
+
+    return questions;
+}
+
+
+class Test {
+    constructor(name, duration, questions) {
+        this.name = name;
+        this.duration = duration;
+        this.questions = questions;
+    }
+}
+
+class Question {
+    constructor(question, answerType, answers) {
+        this.question = question;
+        this.answerType = answerType;
+        this.answers = answers;
+    }
+}
+
+class Answer {
+    constructor(answer, isCorrect) {
+        this.answer = answer;
+        this.isCorrect = this.isCorrect;
+    }
+}
+

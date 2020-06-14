@@ -23,7 +23,6 @@ namespace Elearn.Controllers
         {
             SetUnitStyle();
             _httpContextAccessor = httpContextAccessor;
-          //  var userId = _httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
             _logger = logger;
           
         }
