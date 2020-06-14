@@ -12,6 +12,7 @@ namespace Elearn.Models
 
         public int Id { get; set; }
         public string Json { get; set; }
+        public string Name { get; set; }
         public string UserId { get; set; }
         public DateTime InsertTime { get; set; }
         public string UpdateUserId { get; set; }
