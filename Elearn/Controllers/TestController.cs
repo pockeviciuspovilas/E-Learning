@@ -17,6 +17,20 @@ namespace Elearn.Controllers
             return View();
         }
 
+        public IActionResult SaveResults(int assignId, string json, double mark, int usedTime) {
+            string username = this.User.FindFirstValue(ClaimTypes.Name);
+            AspNetUsers user = context.AspNetUsers.Where(x => x.UserName == username).First();
+            Result result = context.Result.Where(x => x.AsignId == assignId).First();
+
+            result.CompleteTime = DateTime.Now;
+            result.Json = json;
+            result.Mark = mark;
+            result.StartTime = result.CompleteTime.AddSeconds(-usedTime);
+            context.SaveChanges();
+
+            return Json("OK");
+        }
+
         public IActionResult RemoveTestCategory(int id)
         {
             TestCategory category = context.TestCategory.Where(x => x.Id == id).First();
