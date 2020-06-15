@@ -1,8 +1,19 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+@if (!User.Identity.IsAuthenticated)
+{
+    <div class="text-center">
+        <h1 class="display-4">Welcome</h1>
+        <p>If you want to use Elearn please contact <a href="mailto: pockeviciuspovilas@gmail.com">developers</a>!</p>
+    </div>
+}
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>If you want to use Elearn please contact <a href="mailto: pockeviciuspovilas@gmail.com">developers</a>!</p>
-</div>
+@if (User.Identity.IsAuthenticated)
+{
+    <div class="text-center">
+        <h1 class="display-4">Welcome</h1>
+        <p>Use navigation bar to make changes!</p>
+    </div>
+}
+
