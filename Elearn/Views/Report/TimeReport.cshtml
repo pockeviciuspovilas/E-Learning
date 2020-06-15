@@ -2,20 +2,20 @@
 
 @{
     Layout = "~/Views/Report/Shared/_Layout.cshtml";
-    ViewData["Title"] = "Mano testai";
+    ViewData["Title"] = "My tests";
     int completedTests = 0;
     int pendingTests = 0;
     double markSum = 0;
     
 }
-<h2>@ViewBag.begin - @ViewBag.end laikotarpio ataskaita</h2>
+<h2>@ViewBag.begin - @ViewBag.end Time report</h2>
 <table class="table table-hover">
   <thead>
     <tr>
-      <th scope="col">Uždavimo data</th>
-      <th scope="col">Skirta naudotojui</th>
-      <th scope="col">Testo pavadinimas</th>
-      <th scope="col">Balas</th>
+      <th scope="col">Assign time</th>
+      <th scope="col">For user</th>
+      <th scope="col">Test name</th>
+      <th scope="col">Mark</th>
     </tr>
   </thead>
   <tbody>
@@ -29,13 +29,13 @@
         completedTests++;
         markSum+= int.Parse(Mark);
     }
-       
+
     if(int.Parse(Mark)==-2)
         pendingTests++;
     string Date = Model[i].Result.SingleOrDefault() != null && Model[i].Result.SingleOrDefault().CompleteTime!= null ?
-      Model[i].Result.SingleOrDefault().CompleteTime.ToString() : "Nespręsta" ;
+      Model[i].Result.SingleOrDefault().CompleteTime.ToString() : "Unsolved";
     if(Date == "1/1/2000 12:00:00 AM")
-      Date = "Nespręsta";
+        Date = "Unsolved";
     string MarkPercent = Mark + "%";
     @:
     <tr>
@@ -45,11 +45,11 @@
     <td>
       @if(Mark == "-2")
       {
-        <text>Laukiama rezultato</text>
+        <text>Waiting for result</text>
       }
       else if (Mark == "-1")
       {
-        <text>Testas nespręstas</text>
+        <text>Test not solved</text>
       }
       else
       {
@@ -64,15 +64,15 @@
 } 
   </tbody>
 </table>
-</br>
-</br>
+<br/>
+<br/>
   <div class="row">
     <div class="col">
-        <text> Priskirta testų: <strong> @Model.Count</strong></text></br>
-        <text> Išspręsta testų: <strong> @completedTests</strong></text></br>
-        <text> Laukiama vertinimo: <strong> @pendingTests</strong></text></br>
+        <text> Assigned tests: <strong> @Model.Count</strong></text><br/>
+        <text> Solved tests: <strong> @completedTests</strong></text><br/>
+        <text> Waiting for mark: <strong> @pendingTests</strong></text><br/>
     </div>
     <div class="col">
-        <h3>Laikotarpio pažymių vidurkis: @(markSum/completedTests)</h3>
+        <h3>Given time marks average: @(markSum/completedTests)</h3>
     </div>
   </div>

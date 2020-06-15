@@ -11,12 +11,25 @@ using System.Security.Claims;
 
 namespace Elearn.Controllers
 {
+    [Authorize]
     public class UserController : Controller
     {
         aspnetElearnContext context = new aspnetElearnContext();
+
+        public IActionResult GetCategoriesByUnit(int unitId)
+        {
+            return Json(context.UnitCategory.Where(x => x.UnitId == unitId).ToList());
+        }
+
         public IActionResult GetUsers()
         {
+            string username = this.User.FindFirstValue(ClaimTypes.Name);
+
+            AspNetUsers currUser = context.AspNetUsers.Where(x => x.UserName == username).Include(x => x.Unit).Include(x => x.Category).Include(x=>x.AspNetUserRoles).First();
+
+
             List<AspNetUsers> users = context.AspNetUsers.Include(x => x.AspNetUserRoles).ThenInclude(a => a.Role).Include(x => x.Unit).Include(x => x.Category).ToList();
+
             foreach (var user in users.ToList())
             {
                 if (user.AspNetUserRoles.Count > 0)
@@ -29,6 +42,22 @@ namespace Elearn.Controllers
                         }
                     }
                 }
+            }
+            if (currUser.AspNetUserRoles.First().Role.Name != "SuperAdmin")
+            {
+
+           
+            foreach (var user in users.ToList())
+            {
+                if (user.Unit.Count() > 0 && user.Unit.First().Id != currUser.Unit.First().Id)
+                {
+                    users.Remove(user);
+                }
+                else if (user.Category != null && user.Category.UnitId != currUser.Unit.First().Id)
+                {
+                    users.Remove(user);
+                }
+            }
             }
 
             return Json(users);
@@ -125,11 +154,9 @@ namespace Elearn.Controllers
                         }
                     }
                 }
-                if (user.Unit.Count > 0)
+                if (user.Unit.Count > 0 || user.Category != null)
                 {
-
                     users.Remove(user);
-
                 }
             }
 
@@ -175,7 +202,7 @@ namespace Elearn.Controllers
             {
                 user.AspNetUserRoles.Remove(user.AspNetUserRoles.First());
             }
-
+            context.SaveChanges();
 
             AspNetUserRoles role = new AspNetUserRoles();
 

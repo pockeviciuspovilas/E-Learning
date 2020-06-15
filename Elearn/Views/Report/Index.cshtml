@@ -4,55 +4,61 @@
 }
 
 <div class="container">
-  <div class="row">
-    <div class="col-sm">
-      <h2>Ataskaitos pagal vartotoj</h2>
-        <table class="table table-hover">
-    <thead>
-        <tr>
-        <th scope="col">Vartotojas</th>
-        <th scope="col">Peržiūrėti ataskaitą</th>
-        <th scope="col">Atsisiusti ataskaitą</th>
-        </tr>
-    </thead>
-        <tbody>
-        @for(int i=0;i< 1; i++)
-        {
-        @:
-            <tr>
-                <th scope = "row">
-                    @Model[i].UserName
-                </th>
-                <td>
-                    <input type="button" value="Peržiūrėti ataskaitą" onclick="location.href='@Url.Action("UserReport", "Report")?userId=@Model[i].Id'" />
-                </td>
-                <td>
-                    <input type="button" value="Atsisiusti ataskaitą" onclick="location.href='@Url.Action("SaveAsPdfUserReport", "Report")?userId=@Model[i].Id'" />
-            </tr>      
-        } 
-        </tbody>
-    </table>
-    </div>
-    <div class="col-sm">
-      <form asp-action="CategoryReport">
-      <h2>Ataskaitos pagal testų kategoriją</h2>
-      <text>Pasirinkita kategorija:</text>
-      @Html.DropDownList("TestCategory", ViewBag.TestCategory, "Pasirinkite kategoriją", new { @class = "form-control" })
-      <input type="submit" name="showReport" value="Rodyti ataskaitą" class="btn btn-primary" />
-      <input type="submit" name="downloadReport" value="Atsisiusti ataskaitą" class="btn btn-primary" />
-      </form>
+    <div class="row">
+        <div class="col-sm">
+            <h2>User reports</h2>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">User</th>
+                        <th scope="col">View report</th>
+                        <th scope="col">Download report</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (int i = 0; i < 1; i++)
+                    {
+                        @:
+                        <tr>
+                            <th scope="row">
+                                @Model[i].UserName
+                            </th>
+                            <td>
+                                <input class="btn btn-primary" type="button" value="View report" onclick="location.href='@Url.Action("UserReport", "Report")?userId=@Model[i].Id'" />
+                            </td>
+                            <td>
+                                <input class="btn btn-primary" type="button" value="Download report" onclick="location.href='@Url.Action("SaveAsPdfUserReport", "Report")?userId=@Model[i].Id'" />
+                        </tr>
+
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div class="col-sm">
+            <form asp-action="CategoryReport">
+                <h2>Test categories report</h2>
+                <text>Selected category:</text>
+                @Html.DropDownList("TestCategory", ViewBag.TestCategory, "Select category", new { @class = "form-control" })
+                <br />
+                <input type="submit" name="showReport" value="Show report" class="btn btn-primary" />
+                <input type="submit" name="downloadReport" value="Download report" class="btn btn-primary" />
+            </form>
 
 
+        </div>
+        <div class="col-sm">
+            <h2>Time reports</h2>
+            <form asp-action="TimeReport">
+                <text>Select start date</text>
+                <input class="form-control" type="date" name="Begin" />
+                <br />
+                <text>Select end date</text>
+                <input class="form-control" type="date" name="End" />
+                <br />
+                <input type="submit" name="showReport" value="Show report" class="btn btn-primary" />
+                <input type="submit" name="downloadReport" value="Download report" class="btn btn-primary" />
+
+            </form>
+        </div>
     </div>
-    <div class="col-sm">
-      <h2>Ataskaitos pagal laiką</h2>
-      <form asp-action="TimeReport">
-        <text>Pasirinkite praždios datą</text>
-        <input type="date" name ="Begin"/></br>
-        <text>Pasirinkite pabaigos datą</text>
-        <input type="date" name ="End"/>
-        <input type="submit" name="showReport" value="Rodyti ataskaitą" class="btn btn-primary" />
-        <input type="submit" name="downloadReport" value="Atsisiusti ataskaitą" class="btn btn-primary" />
-      </form>
-    </div>
-  </div>
+</div>

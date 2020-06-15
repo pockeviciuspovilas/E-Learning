@@ -122,3 +122,26 @@ function RemoveTestCategory(id) {
         })
     }
 }
+
+function RemoveTest(id) {
+    let confirmation = confirm("Are you sure that you want to delete this test? All asociations with this test will be deleted too!");
+    if (confirmation == true) {
+        $.ajax({
+            type: "POST",
+            dataType: "json",
+            url: "/Test/RemoveTest",
+            data: {
+                id: id,
+            },
+            success: function (data) {
+                if (data != "BAD") {
+                    location.reload();
+                }
+                else {
+                    alert('Something went wrong..')
+                }
+
+            }
+        })
+    }
+}

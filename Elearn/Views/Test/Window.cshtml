@@ -1,10 +1,18 @@
 @{
     ViewData["Title"] = "Test";
 }
+<link href="//cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+<link href="//cdn.quilljs.com/1.3.6/quill.bubble.css" rel="stylesheet">
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script src="~/js/performTest.js"></script>
 <h1>@ViewData["Title"]</h1>
+<div>Test ends in <span id="time"></span> minutes!</div>
+
 <div class="container" id="testContainer">
 
+
+
 </div>
+
+<button class="btn btn-primary" onclick="endTest()">End test</button>

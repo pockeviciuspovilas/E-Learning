@@ -37,7 +37,8 @@ namespace Elearn.Controllers
             
             return View();
         }
-     
+
+        [Authorize]
         public IActionResult UserPage()
         {
             return View();
