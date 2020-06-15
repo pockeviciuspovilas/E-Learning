@@ -29,7 +29,7 @@ namespace Elearn.Controllers
             Unit parsedUnit = JsonConvert.DeserializeObject<Unit>(postUnit);
             if (context.Unit.Include(x => x.TestCategory).Include(x => x.Subscription).Include(x => x.Design).Include(x => x.User).AsNoTracking().Where(x => x == parsedUnit).ToList().Count > 0)
             {
-                Unit contUnit = context.Unit.Include(x => x.TestCategory.Select(y => y.Test))
+                Unit contUnit = context.Unit.Include(x => x.TestCategory).ThenInclude(x=>x.Test).ThenInclude(x=>x.Asign)
                     .Include(x => x.Subscription)
                     .Include(x => x.Design)
                     .Include(x => x.User)
