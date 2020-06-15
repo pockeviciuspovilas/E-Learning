@@ -39,7 +39,7 @@ namespace Elearn.Controllers
         [Authorize(Roles = "Admin,Manager")]
         public IActionResult RemoveTestCategory(int id)
         {
-            TestCategory category = context.TestCategory.Where(x => x.Id == id).First();
+            TestCategory category = context.TestCategory.Include(x=>x.Test).ThenInclude(x=>x.Asign).ThenInclude(x => x.Result).Where(x => x.Id == id).First();
             context.TestCategory.Remove(category);
             context.SaveChanges();
             return Json("OK");
