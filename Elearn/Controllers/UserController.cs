@@ -86,8 +86,9 @@ namespace Elearn.Controllers
 
         public IActionResult RemoveUnitCategory(int id)
         {
-            UnitCategory category = context.UnitCategory.Where(x => x.Id == id).First();
+            UnitCategory category = context.UnitCategory.Include(x=>x.AspNetUsers).Where(x => x.Id == id).First();
             context.UnitCategory.Remove(category);
+            
             context.SaveChanges();
             return Json("OK");
         }
