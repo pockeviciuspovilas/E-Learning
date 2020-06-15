@@ -1,8 +1,68 @@
 @{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Tests";
 }
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="~/js/tests.js"></script>
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<h1>@ViewData["Title"]</h1>
+<p>Use this page to create, edit or delete tests.</p>
+
+    <button class="btn btn-primary" onclick="location.href = '/Test/Create'">Create Test</button>
+    <button type="button" class="btn btn-primary"onclick="OpenModal()">
+        Create category
+    </button>
+    <hr />
+    <div class="container">
+
+        <div class="modal fade" id="testCategoryModal" tabindex="-1" role="dialog" aria-labelledby="testCategoryModal" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="testCategoryModalLabel"></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <input type="text" id="categoryInput" placeholder="Write category name..." class="form-control" />
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" onclick="createTestCategory()">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h4>Categories</h4>
+        <table class="table table-responsive-lg">
+            <thead>
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody id="testCategoriesTBody">
+            </tbody>
+        </table>
+        <br/>
+        <h4>Tests</h4>
+        <table class="table table-responsive-lg">
+            <thead>
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Creator</th>
+                    <th scope="col">Creation time</th>
+                    <th scope="col">Updater</th>
+                    <th scope="col">Update time</th>
+                    <th scope="col">Category</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody id="testsTBody">
+            </tbody>
+        </table>
+    </div>

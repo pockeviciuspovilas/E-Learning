@@ -112,6 +112,18 @@ namespace Elearn.Controllers
             return RedirectToAction("AssignNew", "Assign");
         }
 
-        
+
+        public IActionResult GetCurrentAssigns()
+        {
+            List<Asign> assigns = new List<Asign>();
+
+            string username = this.User.FindFirstValue(ClaimTypes.Name);
+            AspNetUsers user = context.AspNetUsers.Where(x => x.UserName == username).First();
+            
+            return Json(context.Asign.Where(x=>x.ApplicantId == user.Id).Include(x=>x.Test));
+        }
+
+
+
     }
 }

@@ -1,0 +1,29 @@
+﻿@{
+    ViewData["Title"] = "Units";
+}
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="~/js/units.js"></script>
+
+<h1>@ViewData["Title"]</h1>
+<p>Use this page to create, edit or delete units.</p>
+
+    <button class="btn btn-primary" onclick="location.href = '/Unit/Form'">Create Unit</button>
+    <hr />
+<div class="container">
+    <table class="table table-responsive-lg">
+        <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Description</th>
+                <th scope="col">Responsible user</th>
+                <th scope="col">Time</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody id="unitsTbody">
+        </tbody>
+    </table>
+</div>
