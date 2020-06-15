@@ -11,12 +11,14 @@ using System.Security.Principal;
 using System.Security.Claims;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Elearn.MailHelp;
 
 namespace Elearn.Controllers
 {
     public class AssignController : Controller
     {
         aspnetElearnContext context = new aspnetElearnContext();
+        MailHelper mh = new MailHelper();
         public AssignController()
         {
 
@@ -24,7 +26,6 @@ namespace Elearn.Controllers
 
         public IActionResult Index()
         {
-
             return View();
         }
         public IActionResult AssignedTests()
@@ -105,8 +106,9 @@ namespace Elearn.Controllers
 
                 ICollection<Result> resultCol = new List<Result>() {newResult};
                 newAsign.Result = resultCol;
-                
-                
+                mh.InformAboutAssign(context.AspNetUsers.Where(x=> x.Id == userIds[i]).SingleOrDefault().UserName,newAsign);
+
+
             }
             context.SaveChanges();
             return RedirectToAction("AssignNew", "Assign");
