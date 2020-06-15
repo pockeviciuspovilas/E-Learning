@@ -66,7 +66,7 @@ $.ajax({
                     let category = null;
                     for (var n = 0; n < testCategories.length; n++) {
                         if (testCategories[n].id == tests[i].categoryId) {
-                            category = testCategories[i].name
+                            category = testCategories[n].name
                             break;
                         }
                     }
