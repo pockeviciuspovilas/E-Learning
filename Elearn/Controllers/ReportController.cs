@@ -15,6 +15,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Elearn.Controllers
 {
+    [Authorize]
     public class ReportController : Controller
     {
         aspnetElearnContext context = new aspnetElearnContext();
@@ -69,7 +70,7 @@ namespace Elearn.Controllers
                 }
                 if(Request.Form.Keys.Contains("downloadReport"))
                 {   
-                    return new ViewAsPdf("TimeReport", query, ViewData) { FileName = "userreport.pdf" };
+                    return new ViewAsPdf("TimeReport", query, ViewData) { FileName = "TimeReport.pdf" };
                 }
             }
             return View();
@@ -103,7 +104,7 @@ namespace Elearn.Controllers
                 }
                 if(Request.Form.Keys.Contains("downloadReport"))
                 {   
-                    return new ViewAsPdf("CategoryReport", tests, ViewData) { FileName = "userreport.pdf" };
+                    return new ViewAsPdf("CategoryReport", tests, ViewData) { FileName = "CategoryReport.pdf" };
                 }
             }
             return RedirectToAction("Index","Report");
@@ -123,7 +124,7 @@ namespace Elearn.Controllers
                     
 
 
-            return new ViewAsPdf("CategoryReport", query,ViewData) { FileName = "userreport.pdf" };
+            return new ViewAsPdf("CategoryReport", query,ViewData) { FileName = "CategoryReport.pdf" };
         }
 
 
@@ -139,7 +140,7 @@ namespace Elearn.Controllers
                     
 
 
-            return new ViewAsPdf("UserReport", query,ViewData) { FileName = "userreport.pdf" };
+            return new ViewAsPdf("UserReport", query,ViewData) { FileName = "UserReport.pdf" };
         }
     }
 }

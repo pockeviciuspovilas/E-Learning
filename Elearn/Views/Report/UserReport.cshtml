@@ -2,19 +2,19 @@
 
 @{
     Layout = "~/Views/Report/Shared/_Layout.cshtml";
-    ViewData["Title"] = "Mano testai";
+    ViewData["Title"] = "My tests";
     int completedTests = 0;
     int pendingTests = 0;
     double markSum = 0;
     
 }
-<h2>@ViewBag.User naudotojo ataskaita</h2>
+<h2>@ViewBag.User user report</h2>
 <table class="table table-hover">
   <thead>
     <tr>
-      <th scope="col">Data</th>
-      <th scope="col">Testo pavadinimas</th>
-      <th scope="col">Balas</th>
+      <th scope="col">Date</th>
+      <th scope="col">Test name</th>
+      <th scope="col">Mark</th>
     </tr>
   </thead>
   <tbody>
@@ -34,43 +34,43 @@
     string Date = Model[i].Result.SingleOrDefault() != null && Model[i].Result.SingleOrDefault().CompleteTime!= null ?
       Model[i].Result.SingleOrDefault().CompleteTime.ToString() : "Nespręsta" ;
     if(Date == "1/1/2000 12:00:00 AM")
-      Date = "Nespręsta";
+      Date = "Unsolved";
     string MarkPercent = Mark + "%";
     @:
     <tr>
     <th scope="row">@Date</th>
     <td>@Model[i].Test.Name</td>
     <td>
-      @if(Mark == "-2")
-      {
-        <text>Laukiama rezultato</text>
-      }
-      else if (Mark == "-1")
-      {
-        <text>Testas nespręstas</text>
-      }
-      else
-      {
-        <div class="progress"> 
-            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="@Mark" aria-valuemin="0" aria-valuemax="100" style="width: @MarkPercent"><strong>@MarkPercent</strong></div>
-        </div>
-      }
-        
+        @if (Mark == "-2")
+        {
+            <text>Waiting for result</text>
+        }
+        else if (Mark == "-1")
+        {
+            <text>Test not solved</text>
+        }
+        else
+        {
+            <div class="progress">
+                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="@Mark" aria-valuemin="0" aria-valuemax="100" style="width: @MarkPercent"><strong>@MarkPercent</strong></div>
+            </div>
+        }
+
     </td>
     </tr>
 
 } 
   </tbody>
 </table>
-</br>
-</br>
+<br/>
+<br/>
   <div class="row">
     <div class="col">
-        <text> Naudotojui priskirta testų: <strong> @Model.Count</strong></text></br>
-        <text> Naudotojas išsprendęs testų: <strong> @completedTests</strong></text></br>
-        <text> Laukiama vertinimo: <strong> @pendingTests</strong></text></br>
+        <text> User assigned tests: <strong> @Model.Count</strong></text><br/>
+        <text> User solved tests: <strong> @completedTests</strong></text><br/>
+        <text> Waiting for result: <strong> @pendingTests</strong></text><br/>
     </div>
     <div class="col">
-        <h3>Naudotojo pažymių vidurkis: @(markSum/completedTests)</h3>
+        <h3>User average mark: @(markSum/completedTests)</h3>
     </div>
   </div>

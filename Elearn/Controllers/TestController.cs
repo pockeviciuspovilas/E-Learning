@@ -5,19 +5,23 @@ using System.Security.Claims;
 using System.Collections.Generic;
 using System;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Elearn.Controllers
 {
+    [Authorize]
     public class TestController : Controller
     {
         aspnetElearnContext context = new aspnetElearnContext();
 
+        [Authorize(Roles = "Admin,Manager")]
         public IActionResult Index()
         {
             return View();
         }
 
-        public IActionResult SaveResults(int assignId, string json, double mark, int usedTime) {
+        public IActionResult SaveResults(int assignId, string json, double mark, int usedTime)
+        {
             string username = this.User.FindFirstValue(ClaimTypes.Name);
             AspNetUsers user = context.AspNetUsers.Where(x => x.UserName == username).First();
             Result result = context.Result.Where(x => x.AsignId == assignId).First();
@@ -50,15 +54,15 @@ namespace Elearn.Controllers
             string username = this.User.FindFirstValue(ClaimTypes.Name);
             AspNetUsers user = context.AspNetUsers.Where(x => x.UserName == username).Include(x => x.Unit).Include(x => x.Category).First();
             Unit unit = context.Unit.Where(x => x.UserId == user.Id).First();
-          
-            return Json(context.Test.ToList());
+
+            return Json(context.Test.Where(x => x.Category.UnitId == user.Category.UnitId || x.Category.UnitId == user.Unit.First().Id).ToList());
         }
 
         public IActionResult GetTest(int assignId)
         {
             Asign asign = new Asign();
             asign = context.Asign.Where(x => x.Id == assignId).Include(x => x.Test).First();
-          
+
             return Json(asign);
         }
 
@@ -69,6 +73,7 @@ namespace Elearn.Controllers
             Unit unit = context.Unit.Where(x => x.UserId == user.Id).First();
             return Json(context.TestCategory.Where(x => x.UnitId == unit.Id).ToList());
         }
+
 
         public IActionResult EditTestCategory(string name, int id)
         {
@@ -118,6 +123,7 @@ namespace Elearn.Controllers
             return Json("OK");
         }
 
+
         public IActionResult CreateTest(string name, int categoryId, int duration, string json)
         {
             var username = this.User.FindFirstValue(ClaimTypes.Name);
@@ -145,11 +151,11 @@ namespace Elearn.Controllers
 
         public IActionResult MyTests()
         {
-            var assignWithResults = context.Asign.Include(x => x.Result).Include(y => y.Test).Include(z=> z.Applicant);
+            var assignWithResults = context.Asign.Include(x => x.Result).Include(y => y.Test).Include(z => z.Applicant);
             var query = (from asigns in assignWithResults
-                        where asigns.ApplicantId == HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value
-                        select asigns).ToList();
-                    
+                         where asigns.ApplicantId == HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value
+                         select asigns).ToList();
+
             return View(query);
         }
     }

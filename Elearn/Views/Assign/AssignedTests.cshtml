@@ -1,17 +1,17 @@
 @model List<Elearn.Models.Asign>
 
 @{
-    ViewData["Title"] = "Priskirti testai";
+    ViewData["Title"] = "Assigned tests";
 }
 
 <table class="table table-hover table-responsive">
   <thead>
     <tr>
-      <th scope="col">Pabaigos data</th>
-      <th scope="col">Testo pavadinimas</th>
-      <th scope="col">Skirta</th>
-      <th scope="col">Pažymys</th>
-      <th scope="col">Valdymas</th>
+      <th scope="col">End date</th>
+      <th scope="col">Test name</th>
+      <th scope="col">For</th>
+      <th scope="col">Mark</th>
+      <th scope="col"></th>
     </tr>
   </thead>
   @for(int i=0;i< @Model.Count; i++)
@@ -30,11 +30,11 @@
         }
         else if(Model[i].Result.SingleOrDefault().Mark == -1)
         {
-          <text>Nespręsta</text>
+          <text>Not solved</text>
         }
         else if(Model[i].Result.SingleOrDefault().Mark == -2)
         {
-          <text>Neįvertinta</text>
+          <text>Not rated</text>
         }
       }
       else

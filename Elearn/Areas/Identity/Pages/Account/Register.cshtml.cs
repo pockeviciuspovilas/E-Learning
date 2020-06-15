@@ -68,7 +68,7 @@ namespace Elearn.Areas.Identity.Pages.Account
 
             [Display(Name = "Identification card")]
             public string HEX { get; set; }
-
+            public int UnitCategory { get; set; }
         }
 
         public async Task OnGetAsync(string returnUrl = null)
@@ -83,26 +83,22 @@ namespace Elearn.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
 
             int count = context.AspNetUsers.Where(x => x.Rfid == Input.HEX).ToList().Count();
-        
+
             if (ModelState.IsValid && (Input.HEX == null || count == 0))
             {
                 var user = new IdentityUser { UserName = Input.Email, Email = Input.Email };
                 var result = await _userManager.CreateAsync(user, Input.Password);
-                
+                var unitCategory = Input.UnitCategory;
                 if (result.Succeeded)
                 {
                     AspNetUsers insertedUser = context.AspNetUsers.Where(x => x.Email == Input.Email).First();
                     insertedUser.Rfid = Input.HEX;
 
                     string username = this.User.FindFirstValue(ClaimTypes.Name);
-                    if (context.AspNetUsers.Where(x => x.UserName == username).Include(x => x.Unit).ToList().Count() > 0)
+                    if (unitCategory != -1)
                     {
-                        AspNetUsers usr = context.AspNetUsers.Where(x => x.UserName == username).Include(x => x.Unit).First();
-                        Unit unit = context.Unit.Where(x => x.UserId == usr.Id).First();
-                        insertedUser.Unit.Add(unit);
+                        insertedUser.CategoryId = unitCategory;
                     }
-                  
-
 
                     context.SaveChanges();
                     return RedirectToPage("User");

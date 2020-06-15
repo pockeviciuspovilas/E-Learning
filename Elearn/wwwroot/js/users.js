@@ -48,6 +48,7 @@ function getUsers() {
 }
 getUsers()
 let user = new Object();
+
 function addDataToForm() {
     $.ajax({
         type: "GET",
@@ -114,12 +115,24 @@ function generateTable(users, aspRoles) {
             unitName = users[i].unit[0].name;
         }
 
+
         if (users[i].aspNetUserRoles.length > 0) {
             aspRole = users[i].aspNetUserRoles[0].role.name;
         }
+        let category = "No category"
+        if (users[i].category != null) {
+            category = users[i].category.name;
+            for (var n = 0; n < users.length; n++) {
+                if (users[n].unit.length > 0 && users[n].unit[0].id == users[i].category.unitId) {
+         
+                        unitName = users[n].unit[0].name;
+                    
 
+                }
+            }
+        }
 
-        usersTbody.insertAdjacentHTML("beforeend", "<tr> <td> " + users[i].userName + " </td>   <td> " + aspRole + " <td>" + unitName + " </td> <td></td>   <td><button onclick='RemoveUser(" + i + ")' class='btn btn-danger'>Delete </button> </td>  <td><button class='btn btn-secondary' onclick='LoadUserEdit(" + i + ")'>Edit </button> </td> </tr>");
+        usersTbody.insertAdjacentHTML("beforeend", "<tr> <td> " + users[i].userName + " </td>   <td> " + aspRole + " <td>" + unitName + " </td> <td>" + category + "</td>   <td><button onclick='RemoveUser(" + i + ")' class='btn btn-danger'>Delete </button> </td>  <td><button class='btn btn-secondary' onclick='LoadUserEdit(" + i + ")'>Edit </button> </td> </tr>");
 
     }
 
@@ -152,7 +165,16 @@ function RemoveUser(index) {
     }
 }
 
+function CreateUser() {
+    console.log(unitCategories)
+    if (unitCategories.length > 0) {
+        location.href = "/Identity/Account/Register?id=" + unitCategories[0].unitId
+    }
+    else {
+        location.href = "/Identity/Account/Register"
+    }
 
+}
 
 let globalId = -1;
 function OpenModal() {

@@ -3,7 +3,9 @@
 @{
     ViewData["Title"] = "Register";
 }
-
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="~/js/register.js"></script>
 <h1>@ViewData["Title"]</h1>
 
 <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
@@ -25,6 +27,12 @@
         <input asp-for="Input.ConfirmPassword" class="form-control" />
         <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
     </div>
+    <div class="form-group" id="unitCategories">
+        <label>Select Unit Category:</label>
+        <select asp-for="Input.UnitCategory" id="unitCategoriesSelect" class="form-control">
+            <option value="-1"></option>
+        </select>
+    </div>
     <div class="form-group">
         <label asp-for="Input.HEX"></label>
         <input asp-for="Input.HEX" class="form-control" />
@@ -38,7 +46,7 @@
             <button type="button" onclick="location.href = '/User'" class="btn btn-block btn-secondary">Go back</button>
         </div>
     </div>
-  
+
 </form>
 
 

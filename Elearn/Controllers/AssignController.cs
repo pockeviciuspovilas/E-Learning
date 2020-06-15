@@ -14,6 +14,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Elearn.Controllers
 {
+    [Authorize]
     public class AssignController : Controller
     {
         aspnetElearnContext context = new aspnetElearnContext();
@@ -51,9 +52,10 @@ namespace Elearn.Controllers
             var currentUser = context.AspNetUsers.Where(x => x.Id == HttpContext.User
                                                 .FindFirst(ClaimTypes.NameIdentifier).Value)
                                                 .Include("Unit")
+                                                .Include(x=>x.Category)
                                                 .SingleOrDefault();
                                                 
-            var unitUsers = context.AspNetUsers.Where(x => x.Unit.SingleOrDefault().Id == currentUser.Unit.FirstOrDefault().Id).ToList();
+            var unitUsers = context.AspNetUsers.Where(x => x.Unit.SingleOrDefault().Id == currentUser.Unit.FirstOrDefault().Id  || x.Category != null && x.Category.UnitId == currentUser.Unit.FirstOrDefault().Id).ToList();
             var fullTests = context.Test.Include("Category").Where(x => x.Category.UnitId == currentUser.Unit.FirstOrDefault().Id).ToList();
 
             ViewData["TestId"] = new SelectList(fullTests, "Id", "Name");

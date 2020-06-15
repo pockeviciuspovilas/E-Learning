@@ -1,19 +1,19 @@
 @model List<Elearn.Models.AspNetUsers>
 
 @{
-    ViewData["Title"] = "Priskirti testai";
+    ViewData["Title"] = "Assigned tests";
 }
 <form asp-action="AddNewAssigns">
-    @Html.DropDownList("Test", ViewBag.TestId, "Pasirinkite testą", new { @class = "form-control" })
+    @Html.DropDownList("Test", ViewBag.TestId, "Select test", new { @class = "form-control" })
     <table class="table table-hover">
     <thead>
         <tr>
-        <th scope="col">Vartotojas</th>
-        <th scope="col">Priskirti testą</th>
+        <th scope="col">User</th>
+        <th scope="col">Assign test</th>
         </tr>
     </thead>
         <tbody>
-        @for(int i=0;i< 1; i++)
+        @for(int i=0;i< Model.Count; i++)
         {
         @:
             <tr>
@@ -28,6 +28,6 @@
         </tbody>
     </table>
      <div class="form-group">
-        <input type="submit" value="Priskirti" class="btn btn-primary" />
+        <input type="submit" value="Assign" class="btn btn-primary" />
     </div>
 </form>
