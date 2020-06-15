@@ -36,7 +36,7 @@ namespace Elearn.Controllers
             var assignWithResults = context.Asign.Include(x => x.Result).Include(y => y.Test).Include(z => z.Applicant);
 
             var query = (from asign in assignWithResults
-                         where asign.AsignerId == HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value
+                         where asign.AsignerId == HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value && asign.Test != null
                          select asign).ToList();
 
             return View(query);
