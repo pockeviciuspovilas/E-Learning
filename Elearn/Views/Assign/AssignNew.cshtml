@@ -1,33 +1,36 @@
-@model List<Elearn.Models.AspNetUsers>
+﻿@model List<Elearn.Models.AspNetUsers>
 
 @{
     ViewData["Title"] = "Assigned tests";
 }
-<form asp-action="AddNewAssigns">
-    @Html.DropDownList("Test", ViewBag.TestId, "Select test", new { @class = "form-control" })
-    <table class="table table-hover">
-    <thead>
-        <tr>
-        <th scope="col">User</th>
-        <th scope="col">Assign test</th>
-        </tr>
-    </thead>
-        <tbody>
-        @for(int i=0;i< Model.Count; i++)
-        {
-        @:
-            <tr>
-                <th scope = "row">
-                    @Model[i].UserName
-                </th>
-                <td>
-                    <input type="checkbox" name="@Model[i].Id">
-                </td>
-            </tr>      
-        } 
-        </tbody>
-    </table>
-     <div class="form-group">
-        <input type="submit" value="Assign" class="btn btn-primary" />
-    </div>
-</form>
+    <form asp-action="AddNewAssigns">
+        @Html.DropDownList("Test", ViewBag.TestId, "Select test", new { @class = "form-control" })
+        <h3>Pasirinkite naudotojų kategoriją:</h3>
+        @Html.DropDownList("Category", ViewBag.CategoryId, "Pasirinkite kategoriją", new { @class = "form-control" })
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">User</th>
+                    <th scope="col">Assign test</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = 0; i < Model.Count; i++)
+                {
+                    @:
+                    <tr>
+                        <th scope="row">
+                            @Model[i].UserName
+                        </th>
+                        <td>
+                            <input type="checkbox" name="@Model[i].Id">
+                        </td>
+                    </tr>
+
+                }
+            </tbody>
+        </table>
+        <div class="form-group">
+            <input type="submit" value="Assign" class="btn btn-primary" />
+        </div>
+    </form>

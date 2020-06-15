@@ -65,18 +65,19 @@ namespace Elearn.Controllers
 
             var unitUsers = new List<AspNetUsers>();
             var fullTests = new List<Test>();
+            var unitCategories = new List<UnitCategory>();
 
             if (currentUser.Category != null)
             {
                 unitUsers = context.AspNetUsers.Where(x => x.Category.UnitId == currentUser.Category.UnitId || x.Category != null && x.Category.UnitId == currentUser.Category.UnitId).ToList();
                 fullTests = context.Test.Include("Category").Where(x => x.Category.UnitId == currentUser.Category.UnitId).ToList();
-
+                unitCategories = context.UnitCategory.Where(x => x.UnitId == currentUser.Category.UnitId).ToList();
             }
             else
             {
                 unitUsers = context.AspNetUsers.Where(x => x.Unit.SingleOrDefault().Id == currentUser.Unit.FirstOrDefault().Id || x.Category != null && x.Category.UnitId == currentUser.Unit.FirstOrDefault().Id).ToList();
                 fullTests = context.Test.Include("Category").Where(x => x.Category.UnitId == currentUser.Unit.FirstOrDefault().Id).ToList();
-
+                unitCategories = context.UnitCategory.Where(x => x.UnitId == currentUser.Unit.SingleOrDefault().Id).ToList();
             }
 
             ViewData["TestId"] = new SelectList(fullTests, "Id", "Name");
