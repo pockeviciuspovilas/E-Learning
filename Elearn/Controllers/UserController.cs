@@ -168,7 +168,7 @@ namespace Elearn.Controllers
         public IActionResult RemoveUser(string postUser)
         {
             AspNetUsers parsedUser = JsonConvert.DeserializeObject<AspNetUsers>(postUser);
-            if (context.AspNetUsers.AsNoTracking().Where(x => x == parsedUser).ToList().Count > 0)
+            if (context.AspNetUsers.AsNoTracking().Include(x=>x.AsignApplicant).Include(x=>x.AsignAsigner).Where(x => x == parsedUser).ToList().Count > 0)
             {
                 context.AspNetUsers.Remove(parsedUser);
 
