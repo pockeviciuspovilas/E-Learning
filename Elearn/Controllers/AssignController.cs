@@ -96,10 +96,14 @@ namespace Elearn.Controllers
                                                 .Include("Unit")
                                                 .SingleOrDefault();
 
-            List<string> userIds = Request.Form.Keys.ToList();
-            for (int i = 1; i < userIds.Count - 1; i++)
-            {
+            List<string> userIds = Request.Form.Keys.Contains("assignCat") ?
+                context.AspNetUsers.Where(x => x.CategoryId != null && x.CategoryId != int.Parse(Request.Form["Category"])).Select(y => y.Id).ToList() :
+                Request.Form.Keys.ToList().GetRange(3,Request.Form.Keys.Count - 5);
 
+
+            for(int i=0;i<userIds.Count;i++)
+            {
+                
                 Asign newAsign = new Asign()
                 {
                     ApplicantId = userIds[i],
@@ -122,17 +126,19 @@ namespace Elearn.Controllers
                 };
                 context.Result.Add(newResult);
 
+                
 
-
-                ICollection<Result> resultCol = new List<Result>() { newResult };
+                ICollection<Result> resultCol = new List<Result>() {newResult};
                 newAsign.Result = resultCol;
-                mh.InformAboutAssign(context.AspNetUsers.Where(x=> x.Id == userIds[i]).SingleOrDefault().UserName,newAsign);
-
-
+                Asign p = newAsign.Include("Test");
+                var user = context.AspNetUsers.Where(x=> x.Id == userIds[i]).SingleOrDefault().UserName;
+                mh.InformAboutAssign(user,newAsign);
+                
             }
             context.SaveChanges();
             return RedirectToAction("AssignNew", "Assign");
         }
+
 
 
         public IActionResult GetCurrentAssigns()
