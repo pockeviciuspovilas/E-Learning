@@ -27,9 +27,18 @@ namespace Elearn.Controllers
         public IActionResult RemoveUnit(string postUnit)
         {
             Unit parsedUnit = JsonConvert.DeserializeObject<Unit>(postUnit);
-            if (context.Unit.AsNoTracking().Where(x => x == parsedUnit).ToList().Count > 0)
+            if (context.Unit.Include(x => x.TestCategory).Include(x => x.Subscription).Include(x => x.Design).Include(x => x.User).AsNoTracking().Where(x => x == parsedUnit).ToList().Count > 0)
             {
-                context.Unit.Remove(parsedUnit);
+                Unit contUnit = context.Unit.Include(x => x.TestCategory).ThenInclude(x=>x.Test).ThenInclude(x=>x.Asign)
+                    .Include(x => x.Subscription)
+                    .Include(x => x.Design)
+                    .Include(x => x.User)
+                
+                    .Where(x => x == parsedUnit)
+                    .First();
+
+
+                context.Unit.Remove(contUnit);
                 context.SaveChanges();
                 return Json("OK");
             }
@@ -66,12 +75,12 @@ namespace Elearn.Controllers
             designer.TheadColor = theadColor;
             designer.TbodyColor = tbodyColor;
 
-            Unit unit = context.Unit.Where(x => x.Id == id).Include(x=>x.Design).First();
+            Unit unit = context.Unit.Where(x => x.Id == id).Include(x => x.Design).First();
             Design design = new Design();
             design.Json = JsonConvert.SerializeObject(designer, Formatting.None);
             unit.Design = design;
-           
- 
+
+
             context.SaveChanges();
 
             return Json("OK");
@@ -79,7 +88,7 @@ namespace Elearn.Controllers
 
         public IActionResult GetUnitCategories(int unitId)
         {
-            
+
             return Json("");
         }
         public IActionResult GetUnit(int unitId)

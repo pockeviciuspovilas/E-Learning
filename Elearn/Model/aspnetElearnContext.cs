@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
-namespace Elearn.Models
+namespace Elearn.Model
 {
     public partial class aspnetElearnContext : DbContext
     {
@@ -35,7 +35,8 @@ namespace Elearn.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-              optionsBuilder.UseSqlServer("Server=localhost;Database=aspnet-Elearn;Trusted_Connection=True;MultipleActiveResultSets=true");
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
+                optionsBuilder.UseSqlServer("Server=localhost;Database=aspnet-Elearn;Trusted_Connection=True;MultipleActiveResultSets=true");
             }
         }
 
@@ -58,13 +59,13 @@ namespace Elearn.Models
                 entity.HasOne(d => d.Applicant)
                     .WithMany(p => p.AsignApplicant)
                     .HasForeignKey(d => d.ApplicantId)
-                    .OnDelete(DeleteBehavior.Cascade)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Asign_AspNetUsers_Applicant");
 
                 entity.HasOne(d => d.Asigner)
                     .WithMany(p => p.AsignAsigner)
                     .HasForeignKey(d => d.AsignerId)
-                    .OnDelete(DeleteBehavior.Cascade)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Asign_AspNetUsers");
 
                 entity.HasOne(d => d.Test)
@@ -203,7 +204,7 @@ namespace Elearn.Models
                 entity.HasOne(d => d.Asign)
                     .WithMany(p => p.Result)
                     .HasForeignKey(d => d.AsignId)
-                    .OnDelete(DeleteBehavior.Cascade)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Result_Asign");
             });
 
@@ -220,7 +221,7 @@ namespace Elearn.Models
                 entity.HasOne(d => d.Unit)
                     .WithMany(p => p.Subscription)
                     .HasForeignKey(d => d.UnitId)
-                    .OnDelete(DeleteBehavior.Cascade)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Subscription_Unit");
             });
 
@@ -233,6 +234,10 @@ namespace Elearn.Models
                     .HasColumnName("JSON")
                     .HasColumnType("text");
 
+                entity.Property(e => e.Name)
+                    .HasMaxLength(200)
+                    .IsUnicode(false);
+
                 entity.Property(e => e.UpdateTime).HasColumnType("datetime");
 
                 entity.Property(e => e.UpdateUserId).HasMaxLength(450);
@@ -244,13 +249,13 @@ namespace Elearn.Models
                 entity.HasOne(d => d.Category)
                     .WithMany(p => p.Test)
                     .HasForeignKey(d => d.CategoryId)
-                    .OnDelete(DeleteBehavior.Cascade)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Test_Test_Category");
 
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.Test)
                     .HasForeignKey(d => d.UserId)
-                    .OnDelete(DeleteBehavior.Cascade)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Test_AspNetUsers");
             });
 
@@ -265,7 +270,7 @@ namespace Elearn.Models
                 entity.HasOne(d => d.Unit)
                     .WithMany(p => p.TestCategory)
                     .HasForeignKey(d => d.UnitId)
-                    .OnDelete(DeleteBehavior.Cascade)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Test_Category_Unit");
             });
 

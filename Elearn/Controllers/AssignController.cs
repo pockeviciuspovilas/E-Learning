@@ -45,7 +45,8 @@ namespace Elearn.Controllers
         [Authorize(Roles = "Admin,Manager")]
         public IActionResult Delete(int id)
         {
-            var assignToRemove = context.Asign.Where(x => x.Id == id).SingleOrDefault();
+            var assignToRemove = context.Asign.Where(x => x.Id == id).Include(x=>x.Result).SingleOrDefault();
+            
             context.Asign.Remove(assignToRemove);
             context.SaveChanges();
 
