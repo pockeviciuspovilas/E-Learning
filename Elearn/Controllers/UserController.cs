@@ -172,10 +172,10 @@ namespace Elearn.Controllers
                 Include(x=>x.AsignAsigner).
                 Where(x => x == parsedUser).ToList().Count > 0)
             {
-                var conUser = context.AspNetUsers.AsNoTracking().Include(x => x.AsignApplicant).
-                Include(x => x.AsignAsigner).
+                var conUser = context.AspNetUsers.AsNoTracking().Include(x => x.AsignApplicant).ThenInclude(x => x.Result).
+               
                 Where(x => x == parsedUser).First();
-                context.AspNetUsers.Remove(parsedUser);
+                context.AspNetUsers.Remove(conUser);
 
                 context.SaveChanges();
                 return Json("OK");

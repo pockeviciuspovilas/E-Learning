@@ -70,7 +70,7 @@ $.ajax({
                             break;
                         }
                     }
-                    testsTBody.insertAdjacentHTML("beforeend", "<tr> <td>" + tests[i].name + "</td> <td>" + testUser + "</td> <td>" + tests[i].insertTime + "</td> <td>" + tests[i].updateUserId + "</td> <td>" + tests[i].updateTime + "</td> <td>" + category + "</td> <td><button class='btn btn-danger' onclick='RemoveTest(" + tests[i].id + ")'> Delete </button> </td>  <td><button class='btn btn-warning' onclick='EditTest(" + tests[i].id + ")' > Edit </button> </td>  </tr>")
+                    testsTBody.insertAdjacentHTML("beforeend", "<tr> <td>" + tests[i].name + "</td> <td>" + testUser + "</td> <td>" + tests[i].insertTime.replace("T", " ") + "</td> <td>" + tests[i].updateUserId + "</td> <td>" + tests[i].updateTime + "</td> <td>" + category + "</td> <td><button class='btn btn-danger' onclick='RemoveTest(" + tests[i].id + ")'> Delete </button> </td>  <td><button class='btn btn-warning' onclick='EditTest(" + tests[i].id + ")' > Edit </button> </td>  </tr>")
                 }
             }
         })

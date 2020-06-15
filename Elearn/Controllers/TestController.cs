@@ -108,7 +108,7 @@ namespace Elearn.Controllers
 
         public IActionResult RemoveTest(int id)
         {
-           var test =  context.Test.Where(x => x.Id == id).First();
+           var test =  context.Test.Include(x=>x.Asign).Where(x => x.Id == id).First();
             context.Test.Remove(test);
             context.SaveChanges();
             return Json("OK");
