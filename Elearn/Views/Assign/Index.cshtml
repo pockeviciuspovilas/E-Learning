@@ -1,8 +1,14 @@
 @{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Assigns";
 }
+<h1>@ViewData["Title"]</h1>
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container">
+    <div class="col-6">
+        <button class="btn btn-primary btn-block" onclick="location.href='/Assign/AssignedTests'">Assigned tests</button>
+    </div>
+    <br />
+    <div class="col-6">
+        <button class="btn btn-primary btn-block" onclick="location.href='/Assign/AssignNew'">Assign new test</button>
+    </div>
 </div>
