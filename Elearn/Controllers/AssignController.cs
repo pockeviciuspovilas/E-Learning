@@ -137,8 +137,8 @@ namespace Elearn.Controllers
 
             string username = this.User.FindFirstValue(ClaimTypes.Name);
             AspNetUsers user = context.AspNetUsers.Where(x => x.UserName == username).First();
-
-            return Json(context.Asign.Where(x => x.ApplicantId == user.Id).Include(x => x.Test));
+    
+            return Json(context.Asign.Include(x => x.Test).Where(x => x.ApplicantId == user.Id && x.Test != null).ToList());
         }
 
 
