@@ -54,7 +54,7 @@ namespace Elearn.Controllers
             ViewData["User"] = context.AspNetUsers.Where(x => x.Id == userId).SingleOrDefault().UserName;
             var assignWithResults = context.Asign.Include(x => x.Result).Include(y => y.Test).Include(z => z.Applicant);
             var query = (from asigns in assignWithResults
-                         where asigns.ApplicantId == userId
+                         where asigns.ApplicantId == userId && asigns.Test != null
                          select asigns).ToList();
 
             return View(query);
@@ -73,7 +73,7 @@ namespace Elearn.Controllers
                 var assignWithResults = context.Asign.Include(x => x.Result).Include(y => y.Test).Include(z => z.Applicant);
 
                 var query = (from asign in assignWithResults
-                             where (asign.AsignerId == HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value && asign.InsertTime >= begin && asign.InsertTime <= end)
+                             where (asign.AsignerId == HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value && asign.InsertTime >= begin && asign.InsertTime <= end && asign.Test != null)
                              select asign).ToList();
 
                 if (Request.Form.Keys.Contains("showReport"))
@@ -131,7 +131,7 @@ namespace Elearn.Controllers
             ViewData["User"] = context.AspNetUsers.Where(x => x.Id == userId).SingleOrDefault().UserName;
             var assignWithResults = context.Asign.Include(x => x.Result).Include(y => y.Test).Include(z => z.Applicant);
             var query = (from asigns in assignWithResults
-                         where asigns.ApplicantId == userId
+                         where asigns.ApplicantId == userId && asigns.Test != null
                          select asigns).ToList();
 
 
@@ -147,7 +147,7 @@ namespace Elearn.Controllers
             ViewData["User"] = context.AspNetUsers.Where(x => x.Id == userId).SingleOrDefault().UserName;
             var assignWithResults = context.Asign.Include(x => x.Result).Include(y => y.Test).Include(z => z.Applicant);
             var query = (from asigns in assignWithResults
-                         where asigns.ApplicantId == userId
+                         where asigns.ApplicantId == userId && asigns.Test != null
                          select asigns).ToList();
 
 
