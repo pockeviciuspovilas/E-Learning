@@ -1,6 +1,11 @@
-﻿
+﻿    let url = new URL(window.location.href)
 $.getScript('//cdn.quilljs.com/1.3.6/quill.js', function () {
     console.log("loaded")
+
+    if (url.searchParams.has("id")) {
+        document.getElementById('saveBtn').innerText = "Update Test"
+        loadTest(url.searchParams.get("id"));
+    }
 });
 
 let testCategories = new Object();
@@ -95,6 +100,7 @@ function createQuestion() {
     let radioBtn = document.createElement("button")
     radioBtn.className = "btn btn-secondary"
     radioBtn.innerText = "One answer"
+    radioBtn.id = "rb-" + counter;
     radioBtn.onclick = function () {
         this.nextSibling.remove();
         initializeRadio(this.parentElement);
@@ -104,6 +110,7 @@ function createQuestion() {
     let checkBtn = document.createElement("button")
     checkBtn.className = "btn btn-secondary"
     checkBtn.innerText = "Multiple answers"
+    checkBtn.id = "cb-" + counter;
     checkBtn.onclick = function () {
         this.previousSibling.remove();
         initializeCheck(this.parentElement);
@@ -132,6 +139,7 @@ let answerCounter = 0;
 function initializeRadio(parent) {
     let editor = parent.lastElementChild
     let btn = document.createElement("button")
+    btn.id = "ir-" + counter;
     btn.className = "btn btn-outline-secondary"
     btn.innerText = "Add radio answers"
     btn.onclick = function () {
@@ -150,6 +158,7 @@ function initializeRadio(parent) {
 function initializeCheck(parent) {
     let editor = parent.lastElementChild
     let btn = document.createElement("button")
+    btn.id = "ic-" + counter;
     btn.className = "btn btn-outline-secondary"
     btn.innerText = "Add check answers"
     btn.onclick = function () {
@@ -189,24 +198,43 @@ function createTest() {
     });
     console.log(test)
     console.log(JSON.stringify(test))
-
-    $.ajax({
-        type: "POST",
-        dataType: "json",
-        data: {
-            name: test.name,
-            categoryId: document.getElementById('testCategories').value,
-            duration: test.duration,
-            json: JSON.stringify(test),
-        },
-        url: "/Test/CreateTest",
-        success: function (data) {
-            if (data == "OK") {
-                location.href = "/Test"
+    if (url.searchParams.has("id")) {
+        $.ajax({
+            type: "POST",
+            dataType: "json",
+            data: {
+                name: test.name,
+                id: url.searchParams.get("id"),
+                categoryId: document.getElementById('testCategories').value,
+                duration: test.duration,
+                json: JSON.stringify(test),
+            },
+            url: "/Test/UpdateTest",
+            success: function (data) {
+                if (data == "OK") {
+                    location.href = "/Test"
+                }
             }
-        }
-    })
-
+        })
+    }
+    else {
+        $.ajax({
+            type: "POST",
+            dataType: "json",
+            data: {
+                name: test.name,
+                categoryId: document.getElementById('testCategories').value,
+                duration: test.duration,
+                json: JSON.stringify(test),
+            },
+            url: "/Test/CreateTest",
+            success: function (data) {
+                if (data == "OK") {
+                    location.href = "/Test"
+                }
+            }
+        })
+    }
 }
 
 function getQuestions(editorNodes) {
@@ -261,3 +289,58 @@ class Answer {
     }
 }
 
+
+
+
+function loadTest(id) {
+    $.ajax({
+        type: "GET",
+        dataType: "json",
+        url: "/Test/GetTestEdit",
+        data: {
+            id: id,
+        },
+        success: function (data) {
+            console.log(data)
+            console.log(JSON.parse(data.json))
+            let obj = JSON.parse(data.json)
+
+            document.getElementById('testName').value = obj.name
+            document.getElementById('duration').value = obj.duration
+            document.getElementById('testCategories').value = data.categoryId
+            for (var i = 0; i < obj.questions.length; i++) {
+               
+             
+                createQuestion();
+                realCount = counter - 1;
+                document.getElementById("qs-" + realCount).children[0].innerHTML = obj.questions[i].question
+                
+                if (obj.questions[i].answerType == "radio") {
+                 
+                    document.getElementById("rb-" + realCount).click()
+                    document.getElementById("ir-" + counter).click()
+                    for (var n = 0; n < obj.questions[i].answers.length; n++) {
+       
+                        document.getElementById("ir-" + counter).click()
+                        console.log(document.getElementById("ans-" + realCount + "-" + (answerCounter - 1)).children)
+                        document.getElementById("ans-" + realCount + "-" + (answerCounter - 1)).children[0].innerHTML = obj.questions[i].answers[n].answer
+                        document.getElementById("ans-" + realCount + "-" + (answerCounter - 1)).parentNode.children[1].checked = obj.questions[i].answers[n].isCorrect 
+                    }
+
+                    
+                }
+                else {
+                    document.getElementById("cb-" + realCount).click()
+                    document.getElementById("ic-" + counter).click()
+                    for (var n = 0; n < obj.questions[i].answers.length; n++) {
+
+                        document.getElementById("ic-" + counter).click()
+                        document.getElementById("ans-" + realCount + "-" + (answerCounter - 1)).children[0].innerHTML = obj.questions[i].answers[n].answer
+                        document.getElementById("ans-" + realCount + "-" + (answerCounter - 1)).parentNode.children[1].checked = obj.questions[i].answers[n].isCorrect
+                    }
+                }
+            }
+        }
+    })
+
+}
