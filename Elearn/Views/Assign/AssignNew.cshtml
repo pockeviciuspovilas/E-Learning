@@ -1,7 +1,15 @@
 ﻿@model List<Elearn.Models.AspNetUsers>
 
 @{
-    ViewData["Title"] = "Priskirti testai";
+    ViewData["Title"] = "Assign new tests";
+    if(ViewData["msg"]!= null && ViewData["msg"]!="")
+    {
+
+        <script>
+        alert(@((string)ViewData["msg"]));
+        </script>
+        
+    }
 }
 <form asp-action="AddNewAssigns">
     <h3>Chosen test:</h3>

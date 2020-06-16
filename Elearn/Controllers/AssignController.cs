@@ -88,6 +88,8 @@ namespace Elearn.Controllers
         [Authorize(Roles = "Admin,Manager")]
         public IActionResult AddNewAssigns()
         {
+            try
+            {
             int test = int.Parse(Request.Form["Test"]);
             var date = DateTime.Parse(Request.Form["ExprDate"]);
 
@@ -137,7 +139,15 @@ namespace Elearn.Controllers
                 
             }
             context.SaveChanges();
+            ViewData["msg"]="Succesfuly assigned";
+            
+            }
+            catch
+            {
+                ViewData["msg"]="Please check your input data";
+            }
             return RedirectToAction("AssignNew", "Assign");
+            
         }
 
 
