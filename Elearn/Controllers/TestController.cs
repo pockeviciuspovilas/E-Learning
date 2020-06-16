@@ -7,6 +7,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
 using System.Web.Razor.Generator;
+using Org.BouncyCastle.Asn1.Mozilla;
 
 namespace Elearn.Controllers
 {
@@ -73,6 +74,11 @@ namespace Elearn.Controllers
             return Json(asign);
         }
 
+        public IActionResult GetTestEdit(int id)
+        {
+            return Json(context.Test.Where(x=>x.Id == id).First());
+        }
+
         [Authorize(Roles = "Admin,Manager")]
         public IActionResult GetTestCategories()
         {
@@ -108,7 +114,7 @@ namespace Elearn.Controllers
 
         public IActionResult RemoveTest(int id)
         {
-           var test =  context.Test.Where(x => x.Id == id).First();
+           var test =  context.Test.Include(x=>x.Asign).Where(x => x.Id == id).First();
             context.Test.Remove(test);
             context.SaveChanges();
             return Json("OK");
@@ -153,6 +159,26 @@ namespace Elearn.Controllers
 
             return Json("OK");
         }
+
+        public IActionResult UpdateTest(string name,int id, int categoryId, int duration, string json)
+        {
+            var username = this.User.FindFirstValue(ClaimTypes.Name);
+
+            AspNetUsers user = context.AspNetUsers.Where(x => x.UserName == username).First();
+
+            Test test = context.Test.Where(x => x.Id == id).First();
+            test.UpdateTime = DateTime.Now;
+            test.Json = json;
+            test.UpdateUserId = user.Id;
+            test.Name = name;
+            test.CategoryId = categoryId;
+            context.Test.Update(test);
+            context.SaveChanges();
+
+            return Json("OK");
+
+        }
+
 
         [Authorize(Roles = "Admin,Manager")]
         public IActionResult CreateTest(string name, int categoryId, int duration, string json)

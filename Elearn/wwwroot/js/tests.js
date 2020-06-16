@@ -66,11 +66,15 @@ $.ajax({
                     let category = null;
                     for (var n = 0; n < testCategories.length; n++) {
                         if (testCategories[n].id == tests[i].categoryId) {
-                            category = testCategories[i].name
+                            category = testCategories[n].name
                             break;
                         }
                     }
-                    testsTBody.insertAdjacentHTML("beforeend", "<tr> <td>" + tests[i].name + "</td> <td>" + testUser + "</td> <td>" + tests[i].insertTime + "</td> <td>" + tests[i].updateUserId + "</td> <td>" + tests[i].updateTime + "</td> <td>" + category + "</td> <td><button class='btn btn-danger' onclick='RemoveTest(" + tests[i].id + ")'> Delete </button> </td>  <td><button class='btn btn-warning' onclick='EditTest(" + tests[i].id + ")' > Edit </button> </td>  </tr>")
+                    let updateTime = "No update"
+                    if (tests[i].updateTime != null) {
+                        updateTime = tests[i].insertTime.replace("T", " ")
+                    }
+                    testsTBody.insertAdjacentHTML("beforeend", "<tr> <td>" + tests[i].name + "</td> <td>" + testUser + "</td> <td>" + tests[i].insertTime.replace("T", " ") + "</td>  <td>" + updateTime + "</td> <td>" + category + "</td> <td><button class='btn btn-danger' onclick='RemoveTest(" + tests[i].id + ")'> Delete </button> </td>  <td><button class='btn btn-warning' onclick='EditTest(" + tests[i].id + ")' > Edit </button> </td>  </tr>")
                 }
             }
         })
@@ -121,6 +125,10 @@ function RemoveTestCategory(id) {
             }
         })
     }
+}
+
+function EditTest(id) {
+    location.href = "Test/Create?id=" + id
 }
 
 function RemoveTest(id) {

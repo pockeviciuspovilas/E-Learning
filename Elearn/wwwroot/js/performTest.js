@@ -130,7 +130,7 @@ function calculateMark(answers) {
             goodCount++;
         }
     }
-    alert("Your mark: " + goodCount / answers.length * 10 + "!")
+    alert("Your mark: " + goodCount / answers.length * 100 + "!")
 
 
     $.ajax({
@@ -139,7 +139,7 @@ function calculateMark(answers) {
         data: {
             assignId: url.searchParams.get("id"),
             json: JSON.stringify(answers),
-            mark: goodCount / answers.length * 10,
+            mark: goodCount / answers.length * 100,
             usedTime: (test.duration * 60) - usedTime,
         },
         url: "/Test/SaveResults",
