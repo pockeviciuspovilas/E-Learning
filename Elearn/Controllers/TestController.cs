@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
 using System.Web.Razor.Generator;
 using Org.BouncyCastle.Asn1.Mozilla;
+using Elearn.MailHelp;
 
 namespace Elearn.Controllers
 {
@@ -15,6 +16,7 @@ namespace Elearn.Controllers
     public class TestController : Controller
     {
         aspnetElearnContext context = new aspnetElearnContext();
+        MailHelper mh = new MailHelper();
 
         [Authorize(Roles = "Admin,Manager")]
         public IActionResult Index()
@@ -33,6 +35,8 @@ namespace Elearn.Controllers
             result.Mark = mark;
             result.StartTime = result.CompleteTime.AddSeconds(-usedTime);
             context.SaveChanges();
+            string testName = context.Asign.Where(x=>assignId == x.Id).Include("Test").SingleOrDefault().Test.Name;
+            mh.InformNewMark(username,testName,mark);
 
             return Json("OK");
         }

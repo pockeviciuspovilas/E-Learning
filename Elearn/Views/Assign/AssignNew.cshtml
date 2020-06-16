@@ -4,26 +4,26 @@
     ViewData["Title"] = "Priskirti testai";
 }
 <form asp-action="AddNewAssigns">
-    <h3>Pasirinktas testas:</h3>
-    @Html.DropDownList("Test", ViewBag.TestId, "Pasirinkite testą", new { @class = "form-control" })
-    <h3>Pabaigos data:</h3>
+    <h3>Chosen test:</h3>
+    @Html.DropDownList("Test", ViewBag.TestId, "Choose test", new { @class = "form-control" })
+    <h3>Due:</h3>
     <input type="datetime-local" name ="ExprDate"/>
-    <h3>Pasirinkite naudotojų kategoriją:</h3>
-    @Html.DropDownList("Category", ViewBag.CategoryId, "Pasirinkite kategoriją", new { @class = "form-control" })
+    <h3>Choose unit category:</h3>
+    @Html.DropDownList("Category", ViewBag.CategoryId, "Choose category", new { @class = "form-control" })
     </br>
-    <input type="submit" value="Priskirti kategorijai" class="btn btn-primary" name ="assignCat"/>
+    <input type="submit" value="Assign to category" class="btn btn-primary" name ="assignCat"/>
     </br>
     </br>
-    <h3>Arba pasirinkite naudotojus iš sąrašo:</h3>
+    <h3>Or choose users from the list:</h3>
     <table class="table table-hover">
     <thead>
         <tr>
-        <th scope="col">Vartotojas</th>
-        <th scope="col">Priskirti testą</th>
+        <th scope="col">User</th>
+        <th scope="col">Assign test</th>
         </tr>
     </thead>
         <tbody>
-        @for(int i=0;i< 1; i++)
+        @for(int i=0;i< @Model.Count; i++)
         {
         @:
             <tr>
@@ -38,6 +38,6 @@
         </tbody>
     </table>
      <div class="form-group">
-        <input type="submit" value="Priskirti naudotojams" class="btn btn-primary" name="assignusers" />
+        <input type="submit" value="Assign test to users" class="btn btn-primary" name="assignusers" />
     </div>
 </form>

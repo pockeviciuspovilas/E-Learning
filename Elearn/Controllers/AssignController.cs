@@ -130,9 +130,10 @@ namespace Elearn.Controllers
 
                 ICollection<Result> resultCol = new List<Result>() {newResult};
                 newAsign.Result = resultCol;
-                Asign p = newAsign.Include("Test");
+
                 var user = context.AspNetUsers.Where(x=> x.Id == userIds[i]).SingleOrDefault().UserName;
-                mh.InformAboutAssign(user,newAsign);
+                var currentTest = context.Test.Where(x => x.Id == test).SingleOrDefault();
+                mh.InformAboutAssign(user,currentTest.Name,date);
                 
             }
             context.SaveChanges();
@@ -147,8 +148,8 @@ namespace Elearn.Controllers
 
             string username = this.User.FindFirstValue(ClaimTypes.Name);
             AspNetUsers user = context.AspNetUsers.Where(x => x.UserName == username).First();
-    
-            return Json(context.Asign.Include(x => x.Test).Where(x => x.ApplicantId == user.Id && x.Test != null).ToList());
+
+            return Json(context.Asign.Where(x => x.ApplicantId == user.Id).Include(x => x.Test));
         }
 
 

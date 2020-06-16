@@ -20531,8 +20531,18 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\MyPC\\Documents\\GitHub\\E-Learning\\Elearn\\Areas\\Identity\\Pages\\Account\\AccessDenied.cshtml",
+      "TargetPath": "Areas\\Identity\\Pages\\Account\\AccessDenied.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\MyPC\\Documents\\GitHub\\E-Learning\\Elearn\\Views\\Report\\Shared\\_Layout.cshtml",
       "TargetPath": "Views\\Report\\Shared\\_Layout.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\MyPC\\Documents\\GitHub\\E-Learning\\Elearn\\Areas\\Identity\\Pages\\Account\\ForgotPasswordConfirmation.cshtml",
+      "TargetPath": "Areas\\Identity\\Pages\\Account\\ForgotPasswordConfirmation.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -20546,13 +20556,83 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\MyPC\\Documents\\GitHub\\E-Learning\\Elearn\\Areas\\Identity\\Pages\\Account\\_ViewImports.cshtml",
+      "TargetPath": "Areas\\Identity\\Pages\\Account\\_ViewImports.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\MyPC\\Documents\\GitHub\\E-Learning\\Elearn\\Views\\User\\Index.cshtml",
+      "TargetPath": "Views\\User\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\MyPC\\Documents\\GitHub\\E-Learning\\Elearn\\Areas\\Identity\\Pages\\Account\\Manage\\ChangePassword.cshtml",
+      "TargetPath": "Areas\\Identity\\Pages\\Account\\Manage\\ChangePassword.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\MyPC\\Documents\\GitHub\\E-Learning\\Elearn\\Areas\\Identity\\Pages\\Account\\Manage\\_StatusMessage.cshtml",
+      "TargetPath": "Areas\\Identity\\Pages\\Account\\Manage\\_StatusMessage.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\MyPC\\Documents\\GitHub\\E-Learning\\Elearn\\Areas\\Identity\\Pages\\Account\\Lockout.cshtml",
+      "TargetPath": "Areas\\Identity\\Pages\\Account\\Lockout.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\MyPC\\Documents\\GitHub\\E-Learning\\Elearn\\Areas\\Identity\\Pages\\Account\\Manage\\GenerateRecoveryCodes.cshtml",
+      "TargetPath": "Areas\\Identity\\Pages\\Account\\Manage\\GenerateRecoveryCodes.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\MyPC\\Documents\\GitHub\\E-Learning\\Elearn\\Areas\\Identity\\Pages\\Account\\Manage\\_Layout.cshtml",
+      "TargetPath": "Areas\\Identity\\Pages\\Account\\Manage\\_Layout.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\MyPC\\Documents\\GitHub\\E-Learning\\Elearn\\Areas\\Identity\\Pages\\Account\\ResendEmailConfirmation.cshtml",
+      "TargetPath": "Areas\\Identity\\Pages\\Account\\ResendEmailConfirmation.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\MyPC\\Documents\\GitHub\\E-Learning\\Elearn\\Areas\\Identity\\Pages\\Account\\Manage\\EnableAuthenticator.cshtml",
+      "TargetPath": "Areas\\Identity\\Pages\\Account\\Manage\\EnableAuthenticator.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\MyPC\\Documents\\GitHub\\E-Learning\\Elearn\\Views\\Report\\TimeReport.cshtml",
       "TargetPath": "Views\\Report\\TimeReport.cshtml",
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\MyPC\\Documents\\GitHub\\E-Learning\\Elearn\\Areas\\Identity\\Pages\\_ViewImports.cshtml",
+      "TargetPath": "Areas\\Identity\\Pages\\_ViewImports.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\MyPC\\Documents\\GitHub\\E-Learning\\Elearn\\Areas\\Identity\\Pages\\Account\\Manage\\ShowRecoveryCodes.cshtml",
+      "TargetPath": "Areas\\Identity\\Pages\\Account\\Manage\\ShowRecoveryCodes.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\MyPC\\Documents\\GitHub\\E-Learning\\Elearn\\Views\\Assign\\AssignNew.cshtml",
       "TargetPath": "Views\\Assign\\AssignNew.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\MyPC\\Documents\\GitHub\\E-Learning\\Elearn\\Views\\Test\\Window.cshtml",
+      "TargetPath": "Views\\Test\\Window.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\MyPC\\Documents\\GitHub\\E-Learning\\Elearn\\Areas\\Identity\\Pages\\Account\\Manage\\Index.cshtml",
+      "TargetPath": "Areas\\Identity\\Pages\\Account\\Manage\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\MyPC\\Documents\\GitHub\\E-Learning\\Elearn\\Areas\\Identity\\Pages\\Account\\Manage\\ResetAuthenticator.cshtml",
+      "TargetPath": "Areas\\Identity\\Pages\\Account\\Manage\\ResetAuthenticator.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -20566,8 +20646,48 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\MyPC\\Documents\\GitHub\\E-Learning\\Elearn\\Areas\\Identity\\Pages\\Account\\ResetPassword.cshtml",
+      "TargetPath": "Areas\\Identity\\Pages\\Account\\ResetPassword.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\MyPC\\Documents\\GitHub\\E-Learning\\Elearn\\Views\\Unit\\Index.cshtml",
+      "TargetPath": "Views\\Unit\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\MyPC\\Documents\\GitHub\\E-Learning\\Elearn\\Views\\Test\\Create.cshtml",
+      "TargetPath": "Views\\Test\\Create.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\MyPC\\Documents\\GitHub\\E-Learning\\Elearn\\Areas\\Identity\\Pages\\_ValidationScriptsPartial.cshtml",
+      "TargetPath": "Areas\\Identity\\Pages\\_ValidationScriptsPartial.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\MyPC\\Documents\\GitHub\\E-Learning\\Elearn\\Areas\\Identity\\Pages\\Account\\Login.cshtml",
+      "TargetPath": "Areas\\Identity\\Pages\\Account\\Login.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\MyPC\\Documents\\GitHub\\E-Learning\\Elearn\\Areas\\Identity\\Pages\\Account\\ConfirmEmailChange.cshtml",
+      "TargetPath": "Areas\\Identity\\Pages\\Account\\ConfirmEmailChange.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\MyPC\\Documents\\GitHub\\E-Learning\\Elearn\\Views\\Test\\Index.cshtml",
       "TargetPath": "Views\\Test\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\MyPC\\Documents\\GitHub\\E-Learning\\Elearn\\Areas\\Identity\\Pages\\Account\\_StatusMessage.cshtml",
+      "TargetPath": "Areas\\Identity\\Pages\\Account\\_StatusMessage.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\MyPC\\Documents\\GitHub\\E-Learning\\Elearn\\Areas\\Identity\\Pages\\Error.cshtml",
+      "TargetPath": "Areas\\Identity\\Pages\\Error.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -20581,13 +20701,63 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\MyPC\\Documents\\GitHub\\E-Learning\\Elearn\\Areas\\Identity\\Pages\\Account\\Manage\\PersonalData.cshtml",
+      "TargetPath": "Areas\\Identity\\Pages\\Account\\Manage\\PersonalData.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\MyPC\\Documents\\GitHub\\E-Learning\\Elearn\\Areas\\Identity\\Pages\\Account\\ResetPasswordConfirmation.cshtml",
+      "TargetPath": "Areas\\Identity\\Pages\\Account\\ResetPasswordConfirmation.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\MyPC\\Documents\\GitHub\\E-Learning\\Elearn\\Views\\Assign\\AssignedTests.cshtml",
       "TargetPath": "Views\\Assign\\AssignedTests.cshtml",
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\MyPC\\Documents\\GitHub\\E-Learning\\Elearn\\Areas\\Identity\\Pages\\Account\\Manage\\DeletePersonalData.cshtml",
+      "TargetPath": "Areas\\Identity\\Pages\\Account\\Manage\\DeletePersonalData.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\MyPC\\Documents\\GitHub\\E-Learning\\Elearn\\Areas\\Identity\\Pages\\Account\\ExternalLogin.cshtml",
+      "TargetPath": "Areas\\Identity\\Pages\\Account\\ExternalLogin.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\MyPC\\Documents\\GitHub\\E-Learning\\Elearn\\Areas\\Identity\\Pages\\Account\\Manage\\Email.cshtml",
+      "TargetPath": "Areas\\Identity\\Pages\\Account\\Manage\\Email.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\MyPC\\Documents\\GitHub\\E-Learning\\Elearn\\Views\\Home\\Index.cshtml",
       "TargetPath": "Views\\Home\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\MyPC\\Documents\\GitHub\\E-Learning\\Elearn\\Areas\\Identity\\Pages\\Account\\Manage\\_ViewImports.cshtml",
+      "TargetPath": "Areas\\Identity\\Pages\\Account\\Manage\\_ViewImports.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\MyPC\\Documents\\GitHub\\E-Learning\\Elearn\\Areas\\Identity\\Pages\\Account\\LoginWithRecoveryCode.cshtml",
+      "TargetPath": "Areas\\Identity\\Pages\\Account\\LoginWithRecoveryCode.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\MyPC\\Documents\\GitHub\\E-Learning\\Elearn\\Areas\\Identity\\Pages\\Account\\Manage\\DownloadPersonalData.cshtml",
+      "TargetPath": "Areas\\Identity\\Pages\\Account\\Manage\\DownloadPersonalData.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\MyPC\\Documents\\GitHub\\E-Learning\\Elearn\\Areas\\Identity\\Pages\\Account\\ConfirmEmail.cshtml",
+      "TargetPath": "Areas\\Identity\\Pages\\Account\\ConfirmEmail.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\MyPC\\Documents\\GitHub\\E-Learning\\Elearn\\Areas\\Identity\\Pages\\Account\\Manage\\Disable2fa.cshtml",
+      "TargetPath": "Areas\\Identity\\Pages\\Account\\Manage\\Disable2fa.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -20601,8 +20771,43 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\MyPC\\Documents\\GitHub\\E-Learning\\Elearn\\Areas\\Identity\\Pages\\Account\\Manage\\ExternalLogins.cshtml",
+      "TargetPath": "Areas\\Identity\\Pages\\Account\\Manage\\ExternalLogins.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\MyPC\\Documents\\GitHub\\E-Learning\\Elearn\\Areas\\Identity\\Pages\\Account\\Manage\\SetPassword.cshtml",
+      "TargetPath": "Areas\\Identity\\Pages\\Account\\Manage\\SetPassword.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\MyPC\\Documents\\GitHub\\E-Learning\\Elearn\\Views\\Shared\\_Layout.cshtml",
       "TargetPath": "Views\\Shared\\_Layout.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\MyPC\\Documents\\GitHub\\E-Learning\\Elearn\\Views\\User\\Form.cshtml",
+      "TargetPath": "Views\\User\\Form.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\MyPC\\Documents\\GitHub\\E-Learning\\Elearn\\Views\\Home\\UserPage.cshtml",
+      "TargetPath": "Views\\Home\\UserPage.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\MyPC\\Documents\\GitHub\\E-Learning\\Elearn\\Areas\\Identity\\Pages\\Account\\Manage\\_ManageNav.cshtml",
+      "TargetPath": "Areas\\Identity\\Pages\\Account\\Manage\\_ManageNav.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\MyPC\\Documents\\GitHub\\E-Learning\\Elearn\\Areas\\Identity\\Pages\\Account\\LoginWith2fa.cshtml",
+      "TargetPath": "Areas\\Identity\\Pages\\Account\\LoginWith2fa.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\MyPC\\Documents\\GitHub\\E-Learning\\Elearn\\Areas\\Identity\\Pages\\Account\\RegisterConfirmation.cshtml",
+      "TargetPath": "Areas\\Identity\\Pages\\Account\\RegisterConfirmation.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -20621,8 +20826,33 @@
       "FileKind": "mvc"
     },
     {
-      "FilePath": "c:\\Users\\MyPC\\Documents\\GitHub\\E-Learning\\Elearn\\Views\\Home\\Users.cshtml",
-      "TargetPath": "Views\\Home\\Users.cshtml",
+      "FilePath": "c:\\Users\\MyPC\\Documents\\GitHub\\E-Learning\\Elearn\\Views\\Unit\\Design.cshtml",
+      "TargetPath": "Views\\Unit\\Design.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\MyPC\\Documents\\GitHub\\E-Learning\\Elearn\\Areas\\Identity\\Pages\\Account\\ForgotPassword.cshtml",
+      "TargetPath": "Areas\\Identity\\Pages\\Account\\ForgotPassword.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\MyPC\\Documents\\GitHub\\E-Learning\\Elearn\\Views\\Unit\\Form.cshtml",
+      "TargetPath": "Views\\Unit\\Form.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\MyPC\\Documents\\GitHub\\E-Learning\\Elearn\\Areas\\Identity\\Pages\\Account\\Register.cshtml",
+      "TargetPath": "Areas\\Identity\\Pages\\Account\\Register.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\MyPC\\Documents\\GitHub\\E-Learning\\Elearn\\Areas\\Identity\\Pages\\Account\\Manage\\TwoFactorAuthentication.cshtml",
+      "TargetPath": "Areas\\Identity\\Pages\\Account\\Manage\\TwoFactorAuthentication.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\MyPC\\Documents\\GitHub\\E-Learning\\Elearn\\Areas\\Identity\\Pages\\Account\\Logout.cshtml",
+      "TargetPath": "Areas\\Identity\\Pages\\Account\\Logout.cshtml",
       "FileKind": "mvc"
     }
   ],

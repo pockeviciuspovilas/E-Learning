@@ -15,6 +15,7 @@ using Microsoft.Extensions.Hosting;
 using Elearn.Models;
 using Rotativa.AspNetCore;
 using Newtonsoft.Json;
+using Elearn.MailHelp;
 
 namespace Elearn
 {
@@ -40,6 +41,7 @@ namespace Elearn
             services.AddControllersWithViews();
             services.AddMvc().AddRazorRuntimeCompilation();
             services.AddRazorPages();
+            services.AddHostedService<MailService>();
 
             CreateRoles();
         }
